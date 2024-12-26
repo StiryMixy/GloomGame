@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Platform
+  - Sprite
+  - Material
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2341875627
+    locked: 0
+  - name: BackgroundEffects
+    uniqueID: 2645268145
+    locked: 0
+  - name: GroundBottoms
+    uniqueID: 624126137
+    locked: 0
+  - name: Ground
+    uniqueID: 2262471729
+    locked: 0
+  - name: GroundBlanket
+    uniqueID: 3794501319
+    locked: 0
+  - name: GroundEffects
+    uniqueID: 1149127739
+    locked: 0
+  - name: EntityBottoms
+    uniqueID: 2804526129
+    locked: 0
+  - name: Entities
+    uniqueID: 1729399983
+    locked: 0
+  - name: EntityEffects
+    uniqueID: 2609189607
+    locked: 0
