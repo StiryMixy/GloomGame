@@ -111,11 +111,25 @@ public class s_sprite_entity_definition : MonoBehaviour
 
         if (((v_sprite_entity_state_setup.v_sprite_entity_change_state_gate) && (v_sprite_entity_time_handler_setup.v_time_handler_script.f_time_level_gate_get(v_sprite_entity_time_handler_setup.v_time_handler_level))) || (v_sprite_entity_state_setup.v_sprite_entity_change_state_gate_bypass))
         {
-            v_sprite_entity_state_setup.v_sprite_state_current = v_sprite_entity_state_setup.v_sprite_state;
-            v_sprite_entity_state_setup.v_sprite_state_orientation_current = v_sprite_entity_state_setup.v_sprite_state_orientation;
-            v_sprite_entity_state_setup.v_sprite_state_profile_current = v_sprite_entity_state_setup.v_sprite_state_profile;
+            if ((v_sprite_entity_definition_setup.v_sprite_entity_state_setup.Count > 0) && (v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.Count > 0))
+            {
+                if (v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.Contains(v_sprite_entity_state_setup.v_sprite_state))
+                {
+                    v_sprite_entity_state_setup.v_sprite_state_current = v_sprite_entity_state_setup.v_sprite_state;
+                    v_sprite_entity_state_setup.v_sprite_state_orientation_current = v_sprite_entity_state_setup.v_sprite_state_orientation;
+                    v_sprite_entity_state_setup.v_sprite_state_profile_current = v_sprite_entity_state_setup.v_sprite_state_profile;
 
-            f_sprite_entity_definition_state_determiner(v_sprite_entity_state_setup.v_sprite_state_current);
+                    f_sprite_entity_definition_state_determiner(v_sprite_entity_state_setup.v_sprite_state_current);
+                }
+                else
+                {
+                    f_sprite_entity_nuller();
+                }
+            }
+            else
+            {
+                f_sprite_entity_nuller();
+            }
 
             v_sprite_entity_state_setup.v_sprite_entity_change_state_gate = false;
             v_sprite_entity_state_setup.v_sprite_entity_change_state_gate_bypass = false;
@@ -132,64 +146,50 @@ public class s_sprite_entity_definition : MonoBehaviour
 
     public void f_sprite_entity_definition_state_determiner(v_tags_sprite_state_list sv_targetState)
     {
-        if ((v_sprite_entity_definition_setup.v_sprite_entity_state_setup.Count > 0) && (v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.Count > 0))
+        int tv_targetIndex = v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(sv_targetState);
+        int tv_targetCount = v_sprite_entity_definition_setup.v_sprite_entity_state_setup[tv_targetIndex].v_definition_element_setup.Count;
+        if (tv_targetCount > 0)
         {
-            if (v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.Contains(sv_targetState))
+            if (v_sprite_entity_definition_setup.v_sprite_entity_state_setup[tv_targetIndex].v_state_enabled)
             {
-                int tv_targetIndex = v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(sv_targetState);
-                int tv_targetCount = v_sprite_entity_definition_setup.v_sprite_entity_state_setup[tv_targetIndex].v_definition_element_setup.Count;
-                if (tv_targetCount > 0)
+                if (v_sprite_entity_state_setup.v_sprite_state_orientation_current.Equals(v_tags_sprite_orientation_list.Front))
                 {
-                    if (v_sprite_entity_definition_setup.v_sprite_entity_state_setup[tv_targetIndex].v_state_enabled)
+                    if (v_sprite_entity_state_setup.v_sprite_state_profile_current.Equals(v_tags_sprite_profile_list.Right))
                     {
-                        if (v_sprite_entity_state_setup.v_sprite_state_orientation_current.Equals(v_tags_sprite_orientation_list.Front))
+                        f_sprite_entity_definition_reader(
+                            true, v_sprite_entity_state_setup.v_sprite_entity_counter_reset, v_tags_sprite_profile_list.Right, v_sprite_entity_definition_setup.v_sprite_entity_state_setup[tv_targetIndex].v_definition_element_setup[UnityEngine.Random.Range(0, tv_targetCount)].v_front_orientation_setup.v_profile_right.GetComponent<s_sprite_handler>());
+                    }
+                    else if (v_sprite_entity_state_setup.v_sprite_state_profile_current.Equals(v_tags_sprite_profile_list.Left))
+                    {
+                        if (v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(v_tags_sprite_state_list.Idle)].v_sprite_profile_flipping)
                         {
-                            if (v_sprite_entity_state_setup.v_sprite_state_profile_current.Equals(v_tags_sprite_profile_list.Right))
-                            {
-                                f_sprite_entity_definition_reader(
-                                    true, v_sprite_entity_state_setup.v_sprite_entity_counter_reset, v_tags_sprite_profile_list.Right, v_sprite_entity_definition_setup.v_sprite_entity_state_setup[tv_targetIndex].v_definition_element_setup[UnityEngine.Random.Range(0, tv_targetCount)].v_front_orientation_setup.v_profile_right.GetComponent<s_sprite_handler>());
-                            }
-                            else if (v_sprite_entity_state_setup.v_sprite_state_profile_current.Equals(v_tags_sprite_profile_list.Left))
-                            {
-                                if (v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(v_tags_sprite_state_list.Idle)].v_sprite_profile_flipping)
-                                {
-                                    f_sprite_entity_definition_reader(true, v_sprite_entity_state_setup.v_sprite_entity_counter_reset, v_tags_sprite_profile_list.Left, v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(sv_targetState)].v_definition_element_setup[UnityEngine.Random.Range(0, tv_targetCount)].v_front_orientation_setup.v_profile_right.GetComponent<s_sprite_handler>());
-                                }
-                                else
-                                {
-                                    f_sprite_entity_definition_reader(true, v_sprite_entity_state_setup.v_sprite_entity_counter_reset, v_tags_sprite_profile_list.Right, v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(sv_targetState)].v_definition_element_setup[UnityEngine.Random.Range(0, tv_targetCount)].v_front_orientation_setup.v_profile_left.GetComponent<s_sprite_handler>());
-                                }
-                            }
-                            else
-                            {
-                                f_sprite_entity_nuller();
-                            }
-                        }
-                        else if (v_sprite_entity_state_setup.v_sprite_state_orientation_current.Equals(v_tags_sprite_orientation_list.Back))
-                        {
-                            if (v_sprite_entity_state_setup.v_sprite_state_profile_current.Equals(v_tags_sprite_profile_list.Right))
-                            {
-                                f_sprite_entity_definition_reader(true, v_sprite_entity_state_setup.v_sprite_entity_counter_reset, v_tags_sprite_profile_list.Right, v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(sv_targetState)].v_definition_element_setup[UnityEngine.Random.Range(0, tv_targetCount)].v_back_orientation_setup.v_profile_right.GetComponent<s_sprite_handler>());
-                            }
-                            else if (v_sprite_entity_state_setup.v_sprite_state_profile_current.Equals(v_tags_sprite_profile_list.Left))
-                            {
-                                if (v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(v_tags_sprite_state_list.Idle)].v_sprite_profile_flipping)
-                                {
-                                    f_sprite_entity_definition_reader(true, v_sprite_entity_state_setup.v_sprite_entity_counter_reset, v_tags_sprite_profile_list.Left, v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(sv_targetState)].v_definition_element_setup[UnityEngine.Random.Range(0, tv_targetCount)].v_back_orientation_setup.v_profile_right.GetComponent<s_sprite_handler>());
-                                }
-                                else
-                                {
-                                    f_sprite_entity_definition_reader(true, v_sprite_entity_state_setup.v_sprite_entity_counter_reset, v_tags_sprite_profile_list.Right, v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(sv_targetState)].v_definition_element_setup[UnityEngine.Random.Range(0, tv_targetCount)].v_back_orientation_setup.v_profile_left.GetComponent<s_sprite_handler>());
-                                }
-                            }
-                            else
-                            {
-                                f_sprite_entity_nuller();
-                            }
+                            f_sprite_entity_definition_reader(true, v_sprite_entity_state_setup.v_sprite_entity_counter_reset, v_tags_sprite_profile_list.Left, v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(sv_targetState)].v_definition_element_setup[UnityEngine.Random.Range(0, tv_targetCount)].v_front_orientation_setup.v_profile_right.GetComponent<s_sprite_handler>());
                         }
                         else
                         {
-                            f_sprite_entity_nuller();
+                            f_sprite_entity_definition_reader(true, v_sprite_entity_state_setup.v_sprite_entity_counter_reset, v_tags_sprite_profile_list.Right, v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(sv_targetState)].v_definition_element_setup[UnityEngine.Random.Range(0, tv_targetCount)].v_front_orientation_setup.v_profile_left.GetComponent<s_sprite_handler>());
+                        }
+                    }
+                    else
+                    {
+                        f_sprite_entity_nuller();
+                    }
+                }
+                else if (v_sprite_entity_state_setup.v_sprite_state_orientation_current.Equals(v_tags_sprite_orientation_list.Back))
+                {
+                    if (v_sprite_entity_state_setup.v_sprite_state_profile_current.Equals(v_tags_sprite_profile_list.Right))
+                    {
+                        f_sprite_entity_definition_reader(true, v_sprite_entity_state_setup.v_sprite_entity_counter_reset, v_tags_sprite_profile_list.Right, v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(sv_targetState)].v_definition_element_setup[UnityEngine.Random.Range(0, tv_targetCount)].v_back_orientation_setup.v_profile_right.GetComponent<s_sprite_handler>());
+                    }
+                    else if (v_sprite_entity_state_setup.v_sprite_state_profile_current.Equals(v_tags_sprite_profile_list.Left))
+                    {
+                        if (v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(v_tags_sprite_state_list.Idle)].v_sprite_profile_flipping)
+                        {
+                            f_sprite_entity_definition_reader(true, v_sprite_entity_state_setup.v_sprite_entity_counter_reset, v_tags_sprite_profile_list.Left, v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(sv_targetState)].v_definition_element_setup[UnityEngine.Random.Range(0, tv_targetCount)].v_back_orientation_setup.v_profile_right.GetComponent<s_sprite_handler>());
+                        }
+                        else
+                        {
+                            f_sprite_entity_definition_reader(true, v_sprite_entity_state_setup.v_sprite_entity_counter_reset, v_tags_sprite_profile_list.Right, v_sprite_entity_definition_setup.v_sprite_entity_state_setup[v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.IndexOf(sv_targetState)].v_definition_element_setup[UnityEngine.Random.Range(0, tv_targetCount)].v_back_orientation_setup.v_profile_left.GetComponent<s_sprite_handler>());
                         }
                     }
                     else

@@ -75,7 +75,7 @@ MonoBehaviour:
     v_sprite_alpha_target: 1
     v_sprite_alpha_target_max: 1
     v_sprite_alpha_target_min: 0
-    v_sprite_alpha_increment: 0.01
+    v_sprite_alpha_increment: 0.05
     v_sprite_alpha: 0
     v_sprite_alpha_bool_frame_move_check: 0
   v_sprite_float_up_setup:
