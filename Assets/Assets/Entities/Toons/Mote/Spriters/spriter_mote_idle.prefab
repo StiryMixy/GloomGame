@@ -143,9 +143,7 @@ MonoBehaviour:
     v_frame_list:
     - {fileID: 21300000, guid: d6117672b92b9c44b8d0635c40e4b3ee, type: 3}
     - {fileID: 21300000, guid: 9e617ae317e1a264abeee43b2295af86, type: 3}
-    - {fileID: 21300000, guid: b5ea8154fcdcf6149b39326c70bbfaf6, type: 3}
     - {fileID: 21300000, guid: f5a3389250e17ed4a9f389035a09a46c, type: 3}
-    - {fileID: 21300000, guid: e451d8a9cdd690947b158ac917314e4f, type: 3}
     - {fileID: 21300000, guid: 94920cf780fc2fd4fb1d5a61c8e77d44, type: 3}
     v_frame_counter: 0
     v_frame_counter_stay_timer: 0
@@ -198,7 +196,7 @@ MonoBehaviour:
       v_sprite_alpha_target: 1
       v_sprite_alpha_target_max: 1
       v_sprite_alpha_target_min: 0
-      v_sprite_alpha_increment: 0.01
+      v_sprite_alpha_increment: 0.0125
     v_sprite_float_up_setup:
       v_sprite_float_up_local: 1
       v_sprite_float_up_skip: 0
@@ -211,9 +209,9 @@ MonoBehaviour:
       v_sprite_float_up_target_origin: -0.1
       v_sprite_float_up_randomize_origin: 1
       v_sprite_float_up_target_origin_max: -0.2
-      v_sprite_float_up_target_smoothness: 0.192
+      v_sprite_float_up_target_smoothness: 0.8
       v_sprite_float_up_randomize_smoothness: 1
-      v_sprite_float_up_target_smoothness_max: 0.208
+      v_sprite_float_up_target_smoothness_max: 0.9
       v_sprite_float_direction_is_down_bool: 0
       v_sprite_float_up_bool_direction_change_check: 1
   - v_timer_stay: 15
@@ -227,7 +225,7 @@ MonoBehaviour:
       v_sprite_alpha_target: 0.5
       v_sprite_alpha_target_max: 1
       v_sprite_alpha_target_min: 0
-      v_sprite_alpha_increment: 0.01
+      v_sprite_alpha_increment: 0.0125
     v_sprite_float_up_setup:
       v_sprite_float_up_local: 1
       v_sprite_float_up_skip: 0
@@ -240,9 +238,9 @@ MonoBehaviour:
       v_sprite_float_up_target_origin: -0.1
       v_sprite_float_up_randomize_origin: 1
       v_sprite_float_up_target_origin_max: -0.2
-      v_sprite_float_up_target_smoothness: 0.192
+      v_sprite_float_up_target_smoothness: 0.8
       v_sprite_float_up_randomize_smoothness: 1
-      v_sprite_float_up_target_smoothness_max: 0.208
+      v_sprite_float_up_target_smoothness_max: 0.9
       v_sprite_float_direction_is_down_bool: 1
       v_sprite_float_up_bool_direction_change_check: 1
   - v_timer_stay: 15
@@ -256,7 +254,7 @@ MonoBehaviour:
       v_sprite_alpha_target: 1
       v_sprite_alpha_target_max: 1
       v_sprite_alpha_target_min: 0
-      v_sprite_alpha_increment: 0.01
+      v_sprite_alpha_increment: 0.0125
     v_sprite_float_up_setup:
       v_sprite_float_up_local: 1
       v_sprite_float_up_skip: 0
@@ -269,9 +267,9 @@ MonoBehaviour:
       v_sprite_float_up_target_origin: -0.1
       v_sprite_float_up_randomize_origin: 1
       v_sprite_float_up_target_origin_max: -0.2
-      v_sprite_float_up_target_smoothness: 0.192
+      v_sprite_float_up_target_smoothness: 0.8
       v_sprite_float_up_randomize_smoothness: 1
-      v_sprite_float_up_target_smoothness_max: 0.208
+      v_sprite_float_up_target_smoothness_max: 0.9
       v_sprite_float_direction_is_down_bool: 0
       v_sprite_float_up_bool_direction_change_check: 1
   - v_timer_stay: 15
@@ -285,7 +283,7 @@ MonoBehaviour:
       v_sprite_alpha_target: 0.5
       v_sprite_alpha_target_max: 1
       v_sprite_alpha_target_min: 0
-      v_sprite_alpha_increment: 0.01
+      v_sprite_alpha_increment: 0.0125
     v_sprite_float_up_setup:
       v_sprite_float_up_local: 1
       v_sprite_float_up_skip: 0
@@ -298,67 +296,9 @@ MonoBehaviour:
       v_sprite_float_up_target_origin: -0.1
       v_sprite_float_up_randomize_origin: 1
       v_sprite_float_up_target_origin_max: -0.2
-      v_sprite_float_up_target_smoothness: 0.192
+      v_sprite_float_up_target_smoothness: 0.8
       v_sprite_float_up_randomize_smoothness: 1
-      v_sprite_float_up_target_smoothness_max: 0.208
-      v_sprite_float_direction_is_down_bool: 1
-      v_sprite_float_up_bool_direction_change_check: 1
-  - v_timer_stay: 15
-    v_timer_stay_randomized: 1
-    v_timer_stay_randomized_max: 20
-    v_timer_stay_forever: 0
-    v_sprite_alpha_setup:
-      v_sprite_alpha_local: 1
-      v_sprite_alpha_skip: 0
-      v_sprite_alpha_local_update_on_timer: 1
-      v_sprite_alpha_target: 1
-      v_sprite_alpha_target_max: 1
-      v_sprite_alpha_target_min: 0
-      v_sprite_alpha_increment: 0.01
-    v_sprite_float_up_setup:
-      v_sprite_float_up_local: 1
-      v_sprite_float_up_skip: 0
-      v_sprite_float_up_auto_change_direction: 0
-      v_sprite_float_up_rely_on_frame_change_for_direction_change: 1
-      v_sprite_float_up_distance_threshold: 0.05
-      v_sprite_float_up_target_distance: 0.1
-      v_sprite_float_up_randomize_distance: 1
-      v_sprite_float_up_target_distance_max: 0.2
-      v_sprite_float_up_target_origin: -0.1
-      v_sprite_float_up_randomize_origin: 1
-      v_sprite_float_up_target_origin_max: -0.2
-      v_sprite_float_up_target_smoothness: 0.192
-      v_sprite_float_up_randomize_smoothness: 1
-      v_sprite_float_up_target_smoothness_max: 0.208
-      v_sprite_float_direction_is_down_bool: 0
-      v_sprite_float_up_bool_direction_change_check: 1
-  - v_timer_stay: 15
-    v_timer_stay_randomized: 1
-    v_timer_stay_randomized_max: 20
-    v_timer_stay_forever: 0
-    v_sprite_alpha_setup:
-      v_sprite_alpha_local: 1
-      v_sprite_alpha_skip: 0
-      v_sprite_alpha_local_update_on_timer: 1
-      v_sprite_alpha_target: 0.5
-      v_sprite_alpha_target_max: 1
-      v_sprite_alpha_target_min: 0
-      v_sprite_alpha_increment: 0.01
-    v_sprite_float_up_setup:
-      v_sprite_float_up_local: 1
-      v_sprite_float_up_skip: 0
-      v_sprite_float_up_auto_change_direction: 0
-      v_sprite_float_up_rely_on_frame_change_for_direction_change: 1
-      v_sprite_float_up_distance_threshold: 0.05
-      v_sprite_float_up_target_distance: 0.1
-      v_sprite_float_up_randomize_distance: 1
-      v_sprite_float_up_target_distance_max: 0.2
-      v_sprite_float_up_target_origin: -0.1
-      v_sprite_float_up_randomize_origin: 1
-      v_sprite_float_up_target_origin_max: -0.2
-      v_sprite_float_up_target_smoothness: 0.192
-      v_sprite_float_up_randomize_smoothness: 1
-      v_sprite_float_up_target_smoothness_max: 0.208
+      v_sprite_float_up_target_smoothness_max: 0.9
       v_sprite_float_direction_is_down_bool: 1
       v_sprite_float_up_bool_direction_change_check: 1
   v_sprite_sort_setup:

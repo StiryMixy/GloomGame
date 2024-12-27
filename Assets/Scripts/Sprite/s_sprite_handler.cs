@@ -448,9 +448,12 @@ public class s_sprite_handler : MonoBehaviour
 
             v_sprite_float_up_setup.v_sprite_float_up_vector_target_max = new Vector3(v_sprite_frame_setup.v_sprite_renderer.transform.localPosition.x, v_sprite_float_up_setup.v_sprite_float_up_distance, v_sprite_frame_setup.v_sprite_renderer.transform.localPosition.z);
 
-            v_sprite_float_up_setup.v_sprite_float_up_vector_target = new Vector3(v_sprite_frame_setup.v_sprite_renderer.transform.localPosition.x, Mathf.SmoothDamp(v_sprite_frame_setup.v_sprite_renderer.transform.localPosition.y, v_sprite_float_up_setup.v_sprite_float_up_distance, ref v_sprite_float_up_setup.v_sprite_float_up_y_vector_velocity, (v_sprite_float_up_setup.v_sprite_float_up_smoothness * v_sprite_time_handler_setup.v_time_handler_script.f_time_level_rate_get(v_sprite_time_handler_setup.v_time_handler_level))), v_sprite_frame_setup.v_sprite_renderer.transform.localPosition.z);
+            v_sprite_float_up_setup.v_sprite_float_up_vector_target = new Vector3(v_sprite_frame_setup.v_sprite_renderer.transform.localPosition.x, Mathf.SmoothDamp(v_sprite_frame_setup.v_sprite_renderer.transform.localPosition.y, v_sprite_float_up_setup.v_sprite_float_up_distance, ref v_sprite_float_up_setup.v_sprite_float_up_y_vector_velocity, v_sprite_float_up_setup.v_sprite_float_up_smoothness), v_sprite_frame_setup.v_sprite_renderer.transform.localPosition.z);
 
-            v_sprite_frame_setup.v_sprite_renderer.transform.localPosition = v_sprite_float_up_setup.v_sprite_float_up_vector_target;
+            if (v_sprite_time_handler_setup.v_time_handler_script.f_time_level_gate_get(v_sprite_time_handler_setup.v_time_handler_level))
+            {
+                v_sprite_frame_setup.v_sprite_renderer.transform.localPosition = v_sprite_float_up_setup.v_sprite_float_up_vector_target;
+            }
 
             v_sprite_float_up_setup.v_sprite_float_up_current_distance = Vector3.Distance(v_sprite_frame_setup.v_sprite_renderer.transform.localPosition, v_sprite_float_up_setup.v_sprite_float_up_vector_target_max);
             if (v_sprite_float_up_setup.v_sprite_float_up_current_distance < v_sprite_float_up_setup.v_sprite_float_up_distance_threshold)

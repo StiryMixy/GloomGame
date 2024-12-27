@@ -142,7 +142,7 @@ MonoBehaviour:
     v_sprite_renderer: {fileID: 7842024853470436491}
     v_frame_list:
     - {fileID: 21300000, guid: e06aaa5eb8a79fd449706c55a6a7c042, type: 3}
-    - {fileID: 21300000, guid: 94920cf780fc2fd4fb1d5a61c8e77d44, type: 3}
+    - {fileID: 21300000, guid: e451d8a9cdd690947b158ac917314e4f, type: 3}
     v_frame_counter: 0
     v_frame_counter_stay_timer: 0
     v_frame_counter_stay_timer_randomized_gate: 0

@@ -36,6 +36,7 @@ public class svl_player_collider_movement
     [SerializeField] public float v_player_collider_movement_distance_threshold;
     [SerializeField] public float v_player_collider_dodge_step;
     [SerializeField] public float v_player_collider_dodge_distance_threshold;
+    [SerializeField] public float v_player_collider_dodge_cooldown;
     [SerializeField] public svl_player_collider_movement_speed v_player_collider_movement_speed_setup = new svl_player_collider_movement_speed();
     [Header("Reference Variables")]
     [SerializeField] public svl_player_collider_movement_target v_player_collider_movement_detected_target = new svl_player_collider_movement_target();
@@ -49,6 +50,7 @@ public class svl_player_collider_movement
     [SerializeField] public v_tags_entity_direction_list v_player_collider_last_direction = v_tags_entity_direction_list.Backward;
     [Space(10)]
     [SerializeField] public bool v_player_collider_movement_dodge_detected = false;
+    [SerializeField] public float v_player_collider_movement_dodge_cooldown_counter;
 }
 
 public class s_player_collider_controller : MonoBehaviour
@@ -107,30 +109,47 @@ public class s_player_collider_controller : MonoBehaviour
 
     public void f_player_collider_movement_module()
     {
+        f_player_collider_movement_command_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Forward);
+        f_player_collider_movement_command_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Backward);
+        f_player_collider_movement_command_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Left);
+        f_player_collider_movement_command_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Right);
+
+        if (v_player_collider_time_handler_setup.v_time_handler_script.f_time_level_gate_get(v_player_collider_time_handler_setup.v_time_handler_level))
+        {
+            if (v_player_collider_movement_setup.v_player_collider_movement_dodge_cooldown_counter > 0)
+            {
+                v_player_collider_movement_setup.v_player_collider_movement_dodge_detected = false;
+                v_player_collider_movement_setup.v_player_collider_movement_dodge_cooldown_counter -= 1;
+            }
+        }
+
         if (f_player_collider_keyup_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Dodge))
         {
-            if (v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.f_sampler_distance_check(0))
+            if (v_player_collider_movement_setup.v_player_collider_movement_dodge_cooldown_counter <= 0)
             {
-                if (v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_dodge_target_distance <= 0)
+                if (v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.f_sampler_distance_check(0))
                 {
-                    v_player_collider_movement_setup.v_player_collider_movement_dodge_detected = true;
-                    v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_embed_detected_pathing = true;
+                    if (v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_dodge_target_distance <= 0)
+                    {
+                        v_player_collider_movement_setup.v_player_collider_movement_dodge_detected = true;
+                        v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_embed_detected_pathing = true;
 
-                    if (v_player_collider_movement_setup.v_player_collider_last_direction.Equals(v_tags_entity_direction_list.Forward))
-                    {
-                        v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_movement_detected_target = new Vector3(0, 0, 0 + -v_player_collider_movement_setup.v_player_collider_dodge_step);
-                    }
-                    else if (v_player_collider_movement_setup.v_player_collider_last_direction.Equals(v_tags_entity_direction_list.Left))
-                    {
-                        v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_movement_detected_target = new Vector3(0 + v_player_collider_movement_setup.v_player_collider_dodge_step, 0, 0);
-                    }
-                    else if (v_player_collider_movement_setup.v_player_collider_last_direction.Equals(v_tags_entity_direction_list.Backward))
-                    {
-                        v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_movement_detected_target = new Vector3(0, 0, 0 + v_player_collider_movement_setup.v_player_collider_dodge_step);
-                    }
-                    else if (v_player_collider_movement_setup.v_player_collider_last_direction.Equals(v_tags_entity_direction_list.Right))
-                    {
-                        v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_movement_detected_target = new Vector3(0 + -v_player_collider_movement_setup.v_player_collider_dodge_step, 0, 0);
+                        if (v_player_collider_movement_setup.v_player_collider_last_direction.Equals(v_tags_entity_direction_list.Forward))
+                        {
+                            v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_movement_detected_target = new Vector3(0, 0, 0 + -v_player_collider_movement_setup.v_player_collider_dodge_step);
+                        }
+                        else if (v_player_collider_movement_setup.v_player_collider_last_direction.Equals(v_tags_entity_direction_list.Left))
+                        {
+                            v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_movement_detected_target = new Vector3(0 + v_player_collider_movement_setup.v_player_collider_dodge_step, 0, 0);
+                        }
+                        else if (v_player_collider_movement_setup.v_player_collider_last_direction.Equals(v_tags_entity_direction_list.Backward))
+                        {
+                            v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_movement_detected_target = new Vector3(0, 0, 0 + v_player_collider_movement_setup.v_player_collider_dodge_step);
+                        }
+                        else if (v_player_collider_movement_setup.v_player_collider_last_direction.Equals(v_tags_entity_direction_list.Right))
+                        {
+                            v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_movement_detected_target = new Vector3(0 + -v_player_collider_movement_setup.v_player_collider_dodge_step, 0, 0);
+                        }
                     }
                 }
             }
@@ -138,12 +157,12 @@ public class s_player_collider_controller : MonoBehaviour
 
         f_player_collider_movement_speed_handler();
 
-        f_player_collider_movement_command_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Forward);
-        f_player_collider_movement_command_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Backward);
-        f_player_collider_movement_command_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Left);
-        f_player_collider_movement_command_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Right);
-
         if (f_player_collider_key_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Dodge))
+        {
+            v_player_collider_movement_setup.v_player_collider_movement_key_list.Clear();
+        }
+
+        if (v_player_collider_movement_setup.v_player_collider_movement_dodge_cooldown_counter > 0)
         {
             v_player_collider_movement_setup.v_player_collider_movement_key_list.Clear();
         }
@@ -282,6 +301,8 @@ public class s_player_collider_controller : MonoBehaviour
                         v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_pathing = null;
                         v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_pathing_script = null;
                         v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_dodge_target_distance = 0;
+
+                        v_player_collider_movement_setup.v_player_collider_movement_dodge_cooldown_counter = v_player_collider_movement_setup.v_player_collider_dodge_cooldown;
                     }
                 }
             }
@@ -292,6 +313,23 @@ public class s_player_collider_controller : MonoBehaviour
     {
         if (Input.GetKey(sv_key))
         {
+            if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Forward)
+            {
+                v_player_collider_movement_setup.v_player_collider_last_direction = v_tags_entity_direction_list.Forward;
+            }
+            else if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Left)
+            {
+                v_player_collider_movement_setup.v_player_collider_last_direction = v_tags_entity_direction_list.Left;
+            }
+            else if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Backward)
+            {
+                v_player_collider_movement_setup.v_player_collider_last_direction = v_tags_entity_direction_list.Backward;
+            }
+            else if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Right)
+            {
+                v_player_collider_movement_setup.v_player_collider_last_direction = v_tags_entity_direction_list.Right;
+            }
+
             if (!v_player_collider_movement_setup.v_player_collider_movement_key_list.Contains(sv_key))
             {
                 v_player_collider_movement_setup.v_player_collider_movement_key_list.Insert(0, sv_key);
