@@ -27,6 +27,8 @@ public class s_player_collider_dodge_sampler : MonoBehaviour
     [SerializeField] public s_player_collider_controller v_player_collider_dodge_sampler_player_collider_gameobject_script;
     [Header("Player Collider Dodge Sampler References")]
     [SerializeField] public List<GameObject> v_player_collider_dodge_sampler_pathing_current_collisions_list;
+    [Header("Player Collider Dodge Sampler Distance Setup")]
+    [SerializeField] public float v_player_collider_dodge_sampler_pathing_distance_threshold;
     [Header("Player Collider Dodge Sampler Movement Setup")]
     [SerializeField] public svl_player_collider_dodge_sampler_movement v_player_collider_dodge_sampler_movement_setup = new svl_player_collider_dodge_sampler_movement();
 
@@ -39,37 +41,40 @@ public class s_player_collider_dodge_sampler : MonoBehaviour
     {
         if (!v_player_collider_dodge_sampler_pathing_current_collisions_list.Contains(sv_other_object.gameObject) && (sv_other_object.gameObject != v_player_collider_dodge_sampler_player_collider_gameobject))
         {
-            if (sv_other_object.gameObject.TryGetComponent<s_pathing>(out var ov_pathing))
+            if (Vector3.Distance(v_player_collider_dodge_sampler_player_collider_gameobject.transform.position, sv_other_object.gameObject.transform.position) > v_player_collider_dodge_sampler_pathing_distance_threshold)
             {
-                if (v_player_collider_dodge_sampler_player_collider_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_mode.Equals(v_tags_movement_mode_list.WalkingAndFlying))
+                if (sv_other_object.gameObject.TryGetComponent<s_pathing>(out var ov_pathing))
                 {
-                    if (!ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.None))
+                    if (v_player_collider_dodge_sampler_player_collider_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_mode.Equals(v_tags_movement_mode_list.WalkingAndFlying))
                     {
-                        v_player_collider_dodge_sampler_pathing_current_collisions_list.Add(sv_other_object.gameObject);
+                        if (!ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.None))
+                        {
+                            v_player_collider_dodge_sampler_pathing_current_collisions_list.Add(sv_other_object.gameObject);
+                        }
                     }
-                }
-                else if (v_player_collider_dodge_sampler_player_collider_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_mode.Equals(v_tags_movement_mode_list.Flying))
-                {
-                    if
-                        (
-                            (ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.WalkingAndFlying))
-                            ||
-                            (ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.Flying))
-                        )
+                    else if (v_player_collider_dodge_sampler_player_collider_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_mode.Equals(v_tags_movement_mode_list.Flying))
                     {
-                        v_player_collider_dodge_sampler_pathing_current_collisions_list.Add(sv_other_object.gameObject);
+                        if
+                            (
+                                (ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.WalkingAndFlying))
+                                ||
+                                (ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.Flying))
+                            )
+                        {
+                            v_player_collider_dodge_sampler_pathing_current_collisions_list.Add(sv_other_object.gameObject);
+                        }
                     }
-                }
-                else if (v_player_collider_dodge_sampler_player_collider_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_mode.Equals(v_tags_movement_mode_list.Walking))
-                {
-                    if
-                        (
-                            (ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.WalkingAndFlying))
-                            ||
-                            (ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.Walking))
-                        )
+                    else if (v_player_collider_dodge_sampler_player_collider_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_mode.Equals(v_tags_movement_mode_list.Walking))
                     {
-                        v_player_collider_dodge_sampler_pathing_current_collisions_list.Add(sv_other_object.gameObject);
+                        if
+                            (
+                                (ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.WalkingAndFlying))
+                                ||
+                                (ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.Walking))
+                            )
+                        {
+                            v_player_collider_dodge_sampler_pathing_current_collisions_list.Add(sv_other_object.gameObject);
+                        }
                     }
                 }
             }
@@ -129,7 +134,16 @@ public class s_player_collider_dodge_sampler : MonoBehaviour
             if (tv_local_position_zero_check)
             {
                 v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_max_distance_reached = false;
-                v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_pathing_detected = false;
+
+                if (v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_pathing_detected)
+                {
+                    v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_pathing_detected = false;
+                }
+                else
+                {
+                    v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_embed_detected_pathing = false;
+                    v_player_collider_dodge_sampler_player_collider_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_detected = false;
+                }
             }
         }
         else

@@ -108,6 +108,12 @@ public class s_player_collider_default_sampler : MonoBehaviour
             v_player_collider_default_sampler_movement_setup.v_player_collider_default_sampler_shoot_movement_speed = v_player_collider_default_sampler_movement_setup.v_player_collider_default_sampler_shoot_run_movement_speed;
         }
 
+        if (v_player_collider_default_sampler_player_collider_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_detected)
+        {
+            v_player_collider_default_sampler_movement_setup.v_player_collider_default_sampler_movement_detected_target = Vector3.zero;
+            v_player_collider_default_sampler_movement_setup.v_player_collider_default_sampler_movement_intended_target = Vector3.zero;
+        }
+
         if ((Vector3.Distance(v_player_collider_default_sampler_movement_setup.v_player_collider_default_sampler_movement_intended_target, v_player_collider_default_sampler_movement_setup.v_player_collider_default_sampler_movement_detected_target) > 0) && (Vector3.Distance(transform.localPosition, Vector3.zero) <= 0))
         {
             v_player_collider_default_sampler_movement_setup.v_player_collider_default_sampler_movement_intended_target = v_player_collider_default_sampler_movement_setup.v_player_collider_default_sampler_movement_detected_target;

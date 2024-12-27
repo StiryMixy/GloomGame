@@ -1661,10 +1661,11 @@ MonoBehaviour:
   v_player_collider_dodge_sampler_player_collider_gameobject: {fileID: 1449564065}
   v_player_collider_dodge_sampler_player_collider_gameobject_script: {fileID: 1449564069}
   v_player_collider_dodge_sampler_pathing_current_collisions_list: []
+  v_player_collider_dodge_sampler_pathing_distance_threshold: 0.75
   v_player_collider_dodge_sampler_movement_setup:
     v_player_collider_dodge_sampler_return_movement_speed: 0.12
     v_player_collider_dodge_sampler_shoot_movement_speed: 5
-    v_player_collider_dodge_sampler_search_movement_speed: 0.3
+    v_player_collider_dodge_sampler_search_movement_speed: 0.27
     v_player_collider_dodge_sampler_movement_detected_target: {x: 0, y: 0, z: 0}
     v_player_collider_dodge_sampler_movement_intended_target: {x: 0, y: 0, z: 0}
     v_player_collider_dodge_sampler_target_distance: 0
@@ -3083,6 +3084,7 @@ MonoBehaviour:
       v_player_collider_movement_target_pathing: {fileID: 0}
       v_player_collider_movement_target_pathing_script: {fileID: 0}
       v_player_collider_movement_target_distance: 0
+      v_player_collider_dodge_target_distance: 0
     v_player_collider_movement_key_list: 
     v_player_collider_movement_key_index_list_direction_gate: 0
     v_player_collider_movement_gate: 0
@@ -3090,6 +3092,7 @@ MonoBehaviour:
     v_player_collider_movement_speed: 0
     v_player_collider_last_direction: 0
     v_player_collider_movement_dodge_detected: 0
+    v_player_collider_movement_dodge_key_released: 0
   v_player_collider_debug_render_setup:
     v_debug_manager_gameobject_name: entity_debug_manager
     v_debug_camera_gameobjects:
