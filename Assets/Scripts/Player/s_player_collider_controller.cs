@@ -416,4 +416,27 @@ public class s_player_collider_controller : MonoBehaviour
             return false;
         }
     }
+
+    public void f_scene_reset_action()
+    {
+        transform.position = Vector3.zero;
+
+        v_player_collider_movement_setup.v_player_collider_movement_dodge_detected = false;
+
+        v_player_collider_movement_setup.v_player_collider_movement_default_sampler_gameobject.transform.localPosition = Vector3.zero;
+        v_player_collider_movement_setup.v_player_collider_movement_default_sampler_gameobject_script.v_player_collider_default_sampler_movement_setup.v_player_collider_default_sampler_movement_detected_target = Vector3.zero;
+        v_player_collider_movement_setup.v_player_collider_movement_default_sampler_gameobject_script.v_player_collider_default_sampler_movement_setup.v_player_collider_default_sampler_movement_intended_target = Vector3.zero;
+
+        v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject.transform.localPosition = Vector3.zero;
+        v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_movement_detected_target = Vector3.zero;
+        v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_gameobject_script.v_player_collider_dodge_sampler_movement_setup.v_player_collider_dodge_sampler_movement_intended_target = Vector3.zero;
+
+        v_player_collider_movement_setup.v_player_collider_movement_dodge_detected = false;
+        v_player_collider_movement_setup.v_player_collider_movement_dodge_cooldown_counter = 0;
+
+        v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_pathing = null;
+        v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_pathing_script = null;
+        v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_distance = 0;
+        v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_dodge_target_distance = 0;
+    }
 }

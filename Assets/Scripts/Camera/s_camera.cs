@@ -135,4 +135,9 @@ public class s_camera : MonoBehaviour
         }
         return false;
     }
+
+    public void f_scene_reset_action()
+    {
+        transform.position = Vector3.zero;
+    }
 }

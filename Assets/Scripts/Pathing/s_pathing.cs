@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static s_tag_library;
 
 [Serializable]
@@ -27,6 +28,7 @@ public class svl_pathing_scene_changer
 {
     [Header("Configurable Variables")]
     [SerializeField] public bool v_pathing_scene_changer_enabled;
+    [SerializeField] public string v_pathing_scene_changer_target;
 }
 
 public class s_pathing : MonoBehaviour
@@ -92,6 +94,14 @@ public class s_pathing : MonoBehaviour
         if (!v_pathing_collider_current_collisions_list.Contains(sv_other_object.gameObject))
         {
             v_pathing_collider_current_collisions_list.Add(sv_other_object.gameObject);
+        }
+        if (v_pathing_scene_changer_setup.v_pathing_scene_changer_enabled) 
+        {
+            if (sv_other_object.gameObject.TryGetComponent<s_scene_reset_manager>(out var ov_scene_reset_manager))
+            {
+                ov_scene_reset_manager.f_scene_reset_action();
+                SceneManager.LoadScene(sceneName: v_pathing_scene_changer_setup.v_pathing_scene_changer_target);
+            }
         }
     }
 

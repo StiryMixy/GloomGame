@@ -327,4 +327,9 @@ public class s_player_handler : MonoBehaviour
             v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_state_setup.v_sprite_state_profile = v_player_sprite_setup.v_sprite_state_profile;
         }
     }
+
+    public void f_scene_reset_action()
+    {
+        transform.position = Vector3.zero;
+    }
 }

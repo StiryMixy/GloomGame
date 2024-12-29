@@ -156,4 +156,9 @@ public class s_camera_joystick : MonoBehaviour
     {
         transform.Translate(sv_direction * sv_speed * Time.deltaTime);
     }
+
+    public void f_scene_reset_action()
+    {
+        transform.position = Vector3.zero;
+    }
 }
