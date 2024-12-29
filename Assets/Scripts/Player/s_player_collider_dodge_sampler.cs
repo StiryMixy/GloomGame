@@ -47,7 +47,7 @@ public class s_player_collider_dodge_sampler : MonoBehaviour
                 {
                     if (v_player_collider_dodge_sampler_player_collider_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_mode.Equals(v_tags_movement_mode_list.WalkingAndFlying))
                     {
-                        if (!ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.None))
+                        if (!ov_pathing.v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.None))
                         {
                             v_player_collider_dodge_sampler_pathing_current_collisions_list.Add(sv_other_object.gameObject);
                         }
@@ -56,9 +56,9 @@ public class s_player_collider_dodge_sampler : MonoBehaviour
                     {
                         if
                             (
-                                (ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.WalkingAndFlying))
+                                (ov_pathing.v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.WalkingAndFlying))
                                 ||
-                                (ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.Flying))
+                                (ov_pathing.v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.Flying))
                             )
                         {
                             v_player_collider_dodge_sampler_pathing_current_collisions_list.Add(sv_other_object.gameObject);
@@ -68,9 +68,9 @@ public class s_player_collider_dodge_sampler : MonoBehaviour
                     {
                         if
                             (
-                                (ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.WalkingAndFlying))
+                                (ov_pathing.v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.WalkingAndFlying))
                                 ||
-                                (ov_pathing.v_pathing_type.Equals(v_tags_movement_mode_list.Walking))
+                                (ov_pathing.v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.Walking))
                             )
                         {
                             v_player_collider_dodge_sampler_pathing_current_collisions_list.Add(sv_other_object.gameObject);

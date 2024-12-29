@@ -8,7 +8,7 @@ public class sgvl_debug_controller
 {
     [Header("Configurable Variables")]
     [SerializeField] public string v_debug_manager_gameobject_name;
-    [SerializeField] public List<GameObject> v_debug_camera_gameobjects;
+    [SerializeField] public List<GameObject> v_debug_gameobjects_list;
     [Header("Reference Variables")]
     [SerializeField] public GameObject v_debug_manager_gameobject;
     [SerializeField] public s_debug_controller v_debug_manager_gameobject_script;
@@ -49,6 +49,17 @@ public class s_debug_controller : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    public void f_debug_renderer_controller(List<GameObject> sv_list)
+    {
+        foreach (GameObject item in sv_list)
+        {
+            foreach (Renderer r in item.GetComponentsInChildren<Renderer>())
+            {
+                r.enabled = v_debug_renderers_enabled;
+            }
         }
     }
 }

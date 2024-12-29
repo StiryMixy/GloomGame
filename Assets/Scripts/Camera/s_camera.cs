@@ -60,7 +60,7 @@ public class s_camera : MonoBehaviour
     {
         v_camera_height_setup.v_zoom_check = f_camera_height_controller(false);
         v_camera_focus_setup.v_focus_check = f_camera_smoothly_move_towards();
-        f_camera_debug_renderer_controller(v_camera_debug_render_setup.v_debug_manager_gameobject_script.v_debug_renderers_enabled);
+        v_camera_debug_render_setup.v_debug_manager_gameobject_script.f_debug_renderer_controller(v_camera_debug_render_setup.v_debug_gameobjects_list);
     }
     
     public void f_camera_gameobject_finder()
@@ -134,16 +134,5 @@ public class s_camera : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    public void f_camera_debug_renderer_controller(bool sv_is_allowed)
-    {
-        foreach (GameObject item in v_camera_debug_render_setup.v_debug_camera_gameobjects)
-        {
-            foreach (Renderer r in item.GetComponentsInChildren<Renderer>())
-            {
-                r.enabled = sv_is_allowed;
-            }
-        }
     }
 }

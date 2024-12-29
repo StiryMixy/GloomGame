@@ -13,6 +13,22 @@ public class svl_pathing_render
     [SerializeField] public bool v_pathing_render_enable = false;
 }
 
+[Serializable]
+public class svl_pathing_type
+{
+    [Header("Configurable Variables")]
+    [SerializeField] public v_tags_movement_mode_list v_pathing_type;
+    [Header("Reference Variables")]
+    [SerializeField] public bool v_pathing_type_is_disregarded = false;
+}
+
+[Serializable]
+public class svl_pathing_scene_changer
+{
+    [Header("Configurable Variables")]
+    [SerializeField] public bool v_pathing_scene_changer_enabled;
+}
+
 public class s_pathing : MonoBehaviour
 {
     [Header("Pathing Key Manager Object Setup")]
@@ -22,10 +38,16 @@ public class s_pathing : MonoBehaviour
     [SerializeField] public svl_pathing_render v_pathing_render_setup = new svl_pathing_render();
 
     [Header("Pathing Type Setup")]
-    [SerializeField] public v_tags_movement_mode_list v_pathing_type;
+    [SerializeField] public svl_pathing_type v_pathing_type_setup = new svl_pathing_type();
+
+    [Header("Pathing Scene Changer Setup")]
+    [SerializeField] public svl_pathing_scene_changer v_pathing_scene_changer_setup = new svl_pathing_scene_changer();
 
     [Header("Pathing Collider References")]
     [SerializeField] public List<GameObject> v_pathing_collider_current_collisions_list;
+
+    [Header("Pathing Debug Setup")]
+    [SerializeField] public sgvl_debug_controller v_pathing_debug_render_setup = new sgvl_debug_controller();
 
     void Start()
     {
@@ -35,6 +57,7 @@ public class s_pathing : MonoBehaviour
     void Update()
     {
         v_pathing_render_setup.v_pathing_render_enable = f_pathing_render_controller(v_pathing_render_setup.v_pathing_render_enable);
+        v_pathing_type_setup.v_pathing_type_is_disregarded = false;
 
         if (v_pathing_render_setup.v_pathing_render_enable)
         {
@@ -49,22 +72,19 @@ public class s_pathing : MonoBehaviour
             v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_min;
         }
 
-        if (v_pathing_type.Equals(v_tags_movement_mode_list.WalkingAndFlying))
+        if (v_pathing_scene_changer_setup.v_pathing_scene_changer_enabled)
         {
-            v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = 0;
+            v_pathing_type_setup.v_pathing_type_is_disregarded = true;
+
+            f_pathing_frame_counter_dictator(10, 11, 12, 0);
         }
-        else if (v_pathing_type.Equals(v_tags_movement_mode_list.Flying))
+
+        if (!v_pathing_type_setup.v_pathing_type_is_disregarded)
         {
-            v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = 1;
+            f_pathing_frame_counter_dictator(1, 2, 3, 0);
         }
-        else if (v_pathing_type.Equals(v_tags_movement_mode_list.Walking))
-        {
-            v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = 2;
-        }
-        else if (v_pathing_type.Equals(v_tags_movement_mode_list.None))
-        {
-            v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = 3;
-        }
+
+        v_pathing_debug_render_setup.v_debug_manager_gameobject_script.f_debug_renderer_controller(v_pathing_debug_render_setup.v_debug_gameobjects_list);
     }
 
     private void OnTriggerEnter(Collider sv_other_object)
@@ -95,6 +115,9 @@ public class s_pathing : MonoBehaviour
     {
         v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject = GameObject.Find(v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject_name);
         v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject_script = v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject.GetComponent<s_key_manager>();
+
+        v_pathing_debug_render_setup.v_debug_manager_gameobject = GameObject.Find(v_pathing_debug_render_setup.v_debug_manager_gameobject_name);
+        v_pathing_debug_render_setup.v_debug_manager_gameobject_script = v_pathing_debug_render_setup.v_debug_manager_gameobject.GetComponent<s_debug_controller>();
     }
 
     public bool f_pathing_render_controller(bool sv_pathing_render)
@@ -124,6 +147,56 @@ public class s_pathing : MonoBehaviour
         else
         {
             return (sv_pathing_render);
+        }
+    }
+
+    public void f_pathing_targetted_by_player_default_movement()
+    {
+        if (!v_pathing_type_setup.v_pathing_type_is_disregarded)
+        {
+            f_pathing_frame_counter_dictator(4, 5, 6, 0);
+        }
+        else
+        {
+            if (v_pathing_scene_changer_setup.v_pathing_scene_changer_enabled)
+            {
+                f_pathing_frame_counter_dictator(13, 14, 15, 0);
+            }
+        }
+    }
+
+    public void f_pathing_targetted_by_player_dodge_movement()
+    {
+        if (!v_pathing_type_setup.v_pathing_type_is_disregarded)
+        {
+            f_pathing_frame_counter_dictator(7, 8, 9, 0);
+        }
+        else
+        {
+            if (v_pathing_scene_changer_setup.v_pathing_scene_changer_enabled)
+            {
+                f_pathing_frame_counter_dictator(16, 17, 18, 0);
+            }
+        }
+    }
+
+    public void f_pathing_frame_counter_dictator(int sv_walking_and_flying_frame, int sv_flying_frame, int sv_walking_frame, int sv_null_frame)
+    {
+        if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.WalkingAndFlying))
+        {
+            v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = sv_walking_and_flying_frame;
+        }
+        else if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.Flying))
+        {
+            v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = sv_flying_frame;
+        }
+        else if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.Walking))
+        {
+            v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = sv_walking_frame;
+        }
+        else
+        {
+            v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = sv_null_frame;
         }
     }
 }

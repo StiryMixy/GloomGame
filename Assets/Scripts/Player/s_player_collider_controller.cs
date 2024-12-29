@@ -74,7 +74,7 @@ public class s_player_collider_controller : MonoBehaviour
     void Update()
     {
         f_player_collider_movement_module();
-        f_player_collider_debug_renderer_controller(v_player_collider_debug_render_setup.v_debug_manager_gameobject_script.v_debug_renderers_enabled);
+        v_player_collider_debug_render_setup.v_debug_manager_gameobject_script.f_debug_renderer_controller(v_player_collider_debug_render_setup.v_debug_gameobjects_list);
     }
 
     private void OnTriggerEnter(Collider sv_other_object)
@@ -157,7 +157,7 @@ public class s_player_collider_controller : MonoBehaviour
 
         f_player_collider_movement_speed_handler();
 
-        if (f_player_collider_key_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Dodge))
+        if ((f_player_collider_key_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Dodge)) || (f_player_collider_keydown_verify(v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Dodge)))
         {
             v_player_collider_movement_setup.v_player_collider_movement_key_list.Clear();
         }
@@ -260,6 +260,8 @@ public class s_player_collider_controller : MonoBehaviour
 
             if (v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_pathing)
             {
+                v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_pathing_script.f_pathing_targetted_by_player_default_movement();
+
                 v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_distance = Vector3.Distance(transform.position, v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_pathing.transform.position);
 
                 f_player_collider_move_towards(v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_pathing.transform.position, v_player_collider_time_handler_setup.v_time_handler_script.f_time_level_rate_get(v_player_collider_time_handler_setup.v_time_handler_level));
@@ -289,6 +291,8 @@ public class s_player_collider_controller : MonoBehaviour
         {
             if (v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_pathing)
             {
+                v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_pathing_script.f_pathing_targetted_by_player_dodge_movement();
+
                 v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_dodge_target_distance = Vector3.Distance(transform.position, v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_pathing.transform.position);
 
                 f_player_collider_move_towards(v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_movement_target_pathing.transform.position, v_player_collider_time_handler_setup.v_time_handler_script.f_time_level_rate_get(v_player_collider_time_handler_setup.v_time_handler_level));
@@ -311,7 +315,7 @@ public class s_player_collider_controller : MonoBehaviour
 
     public void f_player_collider_movement_command_verify(KeyCode sv_key)
     {
-        if (Input.GetKey(sv_key))
+        if ((Input.GetKey(sv_key)) || (Input.GetKeyDown(sv_key)))
         {
             if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Forward)
             {
@@ -410,17 +414,6 @@ public class s_player_collider_controller : MonoBehaviour
         else
         {
             return false;
-        }
-    }
-
-    public void f_player_collider_debug_renderer_controller(bool sv_is_allowed)
-    {
-        foreach (GameObject item in v_player_collider_debug_render_setup.v_debug_camera_gameobjects)
-        {
-            foreach (Renderer r in item.GetComponentsInChildren<Renderer>())
-            {
-                r.enabled = sv_is_allowed;
-            }
         }
     }
 }

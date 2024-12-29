@@ -49,7 +49,7 @@ public class s_camera_joystick : MonoBehaviour
         v_camera_joystick_focus_detach_setup.v_focus_detach_enable = f_camera_joystick_focus_detach_controller(v_camera_joystick_focus_detach_setup.v_focus_detach_enable);
         f_camera_joystick_focus_handler();
         f_camera_joystick_focus_detach_handler();
-        f_camera_joystick_debug_renderer_controller(v_camera_joystick_debug_render_setup.v_debug_manager_gameobject_script.v_debug_renderers_enabled);
+        v_camera_joystick_debug_render_setup.v_debug_manager_gameobject_script.f_debug_renderer_controller(v_camera_joystick_debug_render_setup.v_debug_gameobjects_list);
     }
 
     public void f_camera_joystick_gameobject_finder()
@@ -155,16 +155,5 @@ public class s_camera_joystick : MonoBehaviour
     public void f_camera_joystick_focus_detach_move(Vector3 sv_direction, float sv_speed)
     {
         transform.Translate(sv_direction * sv_speed * Time.deltaTime);
-    }
-
-    public void f_camera_joystick_debug_renderer_controller(bool sv_is_allowed)
-    {
-        foreach (GameObject item in v_camera_joystick_debug_render_setup.v_debug_camera_gameobjects)
-        {
-            foreach (Renderer r in item.GetComponentsInChildren<Renderer>())
-            {
-                r.enabled = sv_is_allowed;
-            }
-        }
     }
 }

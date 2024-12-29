@@ -68,7 +68,7 @@ public class s_player_handler : MonoBehaviour
         f_player_sprite_handler();
         f_player_movement_module();
         f_player_sprite_result_reader();
-        f_player_debug_renderer_controller(v_player_debug_render_setup.v_debug_manager_gameobject_script.v_debug_renderers_enabled);
+        v_player_debug_render_setup.v_debug_manager_gameobject_script.f_debug_renderer_controller(v_player_debug_render_setup.v_debug_gameobjects_list);
     }
 
     private void OnTriggerEnter(Collider sv_other_object)
@@ -325,17 +325,6 @@ public class s_player_handler : MonoBehaviour
             v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_state_setup.v_sprite_state = v_player_sprite_setup.v_sprite_state;
             v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_state_setup.v_sprite_state_orientation = v_player_sprite_setup.v_sprite_state_orientation;
             v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_state_setup.v_sprite_state_profile = v_player_sprite_setup.v_sprite_state_profile;
-        }
-    }
-
-    public void f_player_debug_renderer_controller(bool sv_is_allowed)
-    {
-        foreach (GameObject item in v_player_debug_render_setup.v_debug_camera_gameobjects)
-        {
-            foreach (Renderer r in item.GetComponentsInChildren<Renderer>())
-            {
-                r.enabled = sv_is_allowed;
-            }
         }
     }
 }
