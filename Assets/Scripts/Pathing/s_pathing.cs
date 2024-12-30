@@ -101,8 +101,7 @@ public class s_pathing : MonoBehaviour
             {
                 if (sv_other_object.gameObject.TryGetComponent<s_scene_reset_manager>(out var ov_scene_reset_manager))
                 {
-                    ov_scene_reset_manager.f_scene_reset_action();
-                    SceneManager.LoadScene(sceneName: v_pathing_scene_changer_setup.v_pathing_scene_changer_target);
+                    ov_scene_reset_manager.f_scene_reset_action(v_pathing_scene_changer_setup.v_pathing_scene_changer_target);
                 }
             }
         }

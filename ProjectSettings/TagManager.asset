@@ -71,3 +71,9 @@ TagManager:
   - name: EntityEffects
     uniqueID: 2609189607
     locked: 0
+  - name: Foreground
+    uniqueID: 1479349941
+    locked: 0
+  - name: ForegroundEffects
+    uniqueID: 3936859185
+    locked: 0

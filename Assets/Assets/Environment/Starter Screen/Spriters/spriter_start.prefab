@@ -133,7 +133,7 @@ MonoBehaviour:
     v_time_handler_gameobject_name: entity_time_handler
     v_time_handler_gameobject: {fileID: 0}
     v_time_handler_script: {fileID: 0}
-    v_time_handler_level: 0
+    v_time_handler_level: 4
   v_sprite_frame_setup:
     v_frame_play: 1
     v_frame_loops: 0

@@ -317,26 +317,29 @@ public class s_player_collider_controller : MonoBehaviour
     {
         if ((Input.GetKey(sv_key)) || (Input.GetKeyDown(sv_key)))
         {
-            if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Forward)
+            if (v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.v_player_movement_enabled)
             {
-                v_player_collider_movement_setup.v_player_collider_last_direction = v_tags_entity_direction_list.Forward;
-            }
-            else if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Left)
-            {
-                v_player_collider_movement_setup.v_player_collider_last_direction = v_tags_entity_direction_list.Left;
-            }
-            else if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Backward)
-            {
-                v_player_collider_movement_setup.v_player_collider_last_direction = v_tags_entity_direction_list.Backward;
-            }
-            else if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Right)
-            {
-                v_player_collider_movement_setup.v_player_collider_last_direction = v_tags_entity_direction_list.Right;
-            }
+                if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Forward)
+                {
+                    v_player_collider_movement_setup.v_player_collider_last_direction = v_tags_entity_direction_list.Forward;
+                }
+                else if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Left)
+                {
+                    v_player_collider_movement_setup.v_player_collider_last_direction = v_tags_entity_direction_list.Left;
+                }
+                else if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Backward)
+                {
+                    v_player_collider_movement_setup.v_player_collider_last_direction = v_tags_entity_direction_list.Backward;
+                }
+                else if (sv_key == v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Right)
+                {
+                    v_player_collider_movement_setup.v_player_collider_last_direction = v_tags_entity_direction_list.Right;
+                }
 
-            if (!v_player_collider_movement_setup.v_player_collider_movement_key_list.Contains(sv_key))
-            {
-                v_player_collider_movement_setup.v_player_collider_movement_key_list.Insert(0, sv_key);
+                if (!v_player_collider_movement_setup.v_player_collider_movement_key_list.Contains(sv_key))
+                {
+                    v_player_collider_movement_setup.v_player_collider_movement_key_list.Insert(0, sv_key);
+                }
             }
         }
         else
@@ -385,7 +388,14 @@ public class s_player_collider_controller : MonoBehaviour
     {
         if (Input.GetKey(sv_key))
         {
-            return true;
+            if (v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.v_player_movement_enabled)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
@@ -397,7 +407,14 @@ public class s_player_collider_controller : MonoBehaviour
     {
         if (Input.GetKeyDown(sv_key))
         {
-            return true;
+            if (v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.v_player_movement_enabled)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
@@ -409,7 +426,14 @@ public class s_player_collider_controller : MonoBehaviour
     {
         if (Input.GetKeyUp(sv_key))
         {
-            return true;
+            if (v_player_collider_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.v_player_movement_enabled)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {

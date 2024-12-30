@@ -262,9 +262,12 @@ public class s_player_handler : MonoBehaviour
     {
         if (Input.GetKey(sv_key))
         {
-            if (!v_player_movement_setup.v_player_movement_key_list.Contains(sv_key))
+            if (v_player_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.v_player_movement_enabled)
             {
-                v_player_movement_setup.v_player_movement_key_list.Insert(0, sv_key);
+                if (!v_player_movement_setup.v_player_movement_key_list.Contains(sv_key))
+                {
+                    v_player_movement_setup.v_player_movement_key_list.Insert(0, sv_key);
+                }
             }
         }
         else
@@ -331,5 +334,6 @@ public class s_player_handler : MonoBehaviour
     public void f_scene_reset_action()
     {
         transform.position = Vector3.zero;
+        v_player_sprite_setup.v_player_sprite_caller_object_script.f_sprite_manual_counter_reset();
     }
 }

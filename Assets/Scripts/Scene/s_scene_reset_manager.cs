@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class svl_scene_reset_targets
@@ -11,6 +12,9 @@ public class svl_scene_reset_targets
     [SerializeField] public s_camera v_scene_camera_target;
     [SerializeField] public s_player_collider_controller v_scene_player_collider_controller_target;
     [SerializeField] public s_player_handler v_scene_player_handler_target;
+    [Header("Reference Variables")]
+    [SerializeField] public bool v_reset_gate = false;
+    [SerializeField] public string v_reset_target_scene;
 }
 
 [Serializable]
@@ -45,6 +49,15 @@ public class s_scene_reset_manager : MonoBehaviour
     {
         v_scene_reset_manager_focus_setup.v_focus_check = f_camera_smoothly_move_towards();
         v_scene_reset_manager_debug_render_setup.v_debug_manager_gameobject_script.f_debug_renderer_controller(v_scene_reset_manager_debug_render_setup.v_debug_gameobjects_list);
+
+        if (v_scene_reset_manager_targets_setup.v_reset_gate)
+        {
+            if (v_scene_reset_manager_targets_setup.v_scene_camera_target.f_scene_black_fade_maxed_alpha())
+            {
+                v_scene_reset_manager_targets_setup.v_reset_gate = false;
+                f_scene_reset_action_list();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider sv_other_object)
@@ -79,12 +92,21 @@ public class s_scene_reset_manager : MonoBehaviour
         return false;
     }
 
-    public void f_scene_reset_action()
+    public void f_scene_reset_action(string sv_target_scene_name)
     {
-        v_scene_reset_manager_targets_setup.v_scene_camera_joystick_target.f_scene_reset_action();
+        v_scene_reset_manager_targets_setup.v_reset_gate = true;
+        v_scene_reset_manager_targets_setup.v_reset_target_scene = sv_target_scene_name;
+        v_scene_reset_manager_targets_setup.v_scene_camera_target.v_camera_black_fade_setup.v_camera_black_fade_input_block_upward = true;
+    }
+
+    public void f_scene_reset_action_list()
+    {
         v_scene_reset_manager_targets_setup.v_scene_camera_target.f_scene_reset_action();
+        v_scene_reset_manager_targets_setup.v_scene_camera_joystick_target.f_scene_reset_action();
         v_scene_reset_manager_targets_setup.v_scene_player_collider_controller_target.f_scene_reset_action();
         v_scene_reset_manager_targets_setup.v_scene_player_handler_target.f_scene_reset_action();
         transform.position = Vector3.zero;
+        SceneManager.LoadScene(sceneName: v_scene_reset_manager_targets_setup.v_reset_target_scene);
+        v_scene_reset_manager_targets_setup.v_reset_target_scene = "";
     }
 }

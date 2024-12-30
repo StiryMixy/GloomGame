@@ -36,8 +36,23 @@ public class svl_camera_focus
     [SerializeField] public bool v_focus_check = false;
 }
 
+[Serializable]
+public class svl_camera_black_fade
+{
+    [Header("Configurable Variables")]
+    [SerializeField] public bool v_camera_black_fade_enabled;
+    [SerializeField] public s_sprite_handler v_camera_black_fade_gameobject_script;
+    [Range(0.0f, 1.0f)][SerializeField] public float v_camera_black_fade_target = 1.0f;
+    [Header("Reference Variables")]
+    [SerializeField] public bool v_camera_black_fade_input_block_upward;
+    [SerializeField] public bool v_camera_black_fade_input_block_downward;
+}
+
 public class s_camera : MonoBehaviour
 {
+    [Header("Key Manager Game Object Setup")]
+    [SerializeField] public svgl_key_manager v_camera_key_manager_gameobject_setup = new svgl_key_manager();
+
     [Header("Camera Game Object Setup")]
     [SerializeField] public svl_camera_actualcamera v_camera_actualcamera_gameobject_setup = new svl_camera_actualcamera();
 
@@ -46,6 +61,9 @@ public class s_camera : MonoBehaviour
 
     [Header("Camera Focus Setup")]
     [SerializeField] public svl_camera_focus v_camera_focus_setup = new svl_camera_focus();
+
+    [Header("Camera Black Fade Setup")]
+    [SerializeField] public svl_camera_black_fade v_camera_black_fade_setup = new svl_camera_black_fade();
 
     [Header("Camera Debug Setup")]
     [SerializeField] public sgvl_debug_full_controller v_camera_debug_render_setup = new sgvl_debug_full_controller();
@@ -60,12 +78,52 @@ public class s_camera : MonoBehaviour
     {
         v_camera_height_setup.v_zoom_check = f_camera_height_controller(false);
         v_camera_focus_setup.v_focus_check = f_camera_smoothly_move_towards();
+
+        if (v_camera_black_fade_setup.v_camera_black_fade_enabled)
+        {
+            if (v_camera_black_fade_setup.v_camera_black_fade_input_block_upward)
+            {
+                v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_max;
+
+                v_camera_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.v_player_movement_enabled = false;
+                
+                if (v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha >= v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_max)
+                {
+                    v_camera_black_fade_setup.v_camera_black_fade_input_block_upward = false;
+                    v_camera_black_fade_setup.v_camera_black_fade_input_block_downward = true;
+                }
+            }
+            else if (v_camera_black_fade_setup.v_camera_black_fade_input_block_downward)
+            {
+                v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_camera_black_fade_setup.v_camera_black_fade_target;
+
+                if (v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha <= v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_min)
+                {
+                    v_camera_black_fade_setup.v_camera_black_fade_input_block_downward = false;
+                    v_camera_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.v_player_movement_enabled = true;
+                }
+            }
+            else
+            {
+                v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_camera_black_fade_setup.v_camera_black_fade_target;
+            }
+        }
+        else
+        {
+            v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = 0;
+            v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha = 0;
+        }
+
         v_camera_debug_render_setup.v_debug_manager_gameobject_script.f_debug_renderer_controller(v_camera_debug_render_setup.v_debug_gameobjects_list);
     }
     
     public void f_camera_gameobject_finder()
     {
         v_camera_focus_setup.v_focus_gameobject = GameObject.Find(v_camera_focus_setup.v_focus_gameobject_name);
+
+        v_camera_key_manager_gameobject_setup.v_key_manager_gameobject = GameObject.Find(v_camera_key_manager_gameobject_setup.v_key_manager_gameobject_name);
+        v_camera_key_manager_gameobject_setup.v_key_manager_gameobject_script = v_camera_key_manager_gameobject_setup.v_key_manager_gameobject.GetComponent<s_key_manager>();
+
         v_camera_debug_render_setup.v_debug_manager_gameobject = GameObject.Find(v_camera_debug_render_setup.v_debug_manager_gameobject_name);
         v_camera_debug_render_setup.v_debug_manager_gameobject_script = v_camera_debug_render_setup.v_debug_manager_gameobject.GetComponent<s_debug_controller>();
     }
@@ -139,5 +197,10 @@ public class s_camera : MonoBehaviour
     public void f_scene_reset_action()
     {
         transform.position = Vector3.zero;
+    }
+
+    public bool f_scene_black_fade_maxed_alpha()
+    {
+        return (v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha >= v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_max);
     }
 }

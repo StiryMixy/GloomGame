@@ -279,4 +279,10 @@ public class s_sprite_entity_definition : MonoBehaviour
     {
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.f_sprite_rewind_to_first_frame();
     }
+
+    public void f_sprite_manual_counter_reset()
+    {
+        v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_frame_setup.v_frame_counter = 0;
+        v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.f_sprite_index_element_counter_parameters_reset();
+    }
 }

@@ -42,5 +42,4 @@ public class s_ground_handler : MonoBehaviour
         v_ground_handler_debug_render_setup.v_debug_manager_gameobject = GameObject.Find(v_ground_handler_debug_render_setup.v_debug_manager_gameobject_name);
         v_ground_handler_debug_render_setup.v_debug_manager_gameobject_script = v_ground_handler_debug_render_setup.v_debug_manager_gameobject.GetComponent<s_debug_controller>();
     }
-
 }

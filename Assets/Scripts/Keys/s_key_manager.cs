@@ -37,6 +37,8 @@ public class svl_key_manager_pathing_render
 public class svl_key_manager_player_movement
 {
     [Header("Configurable Variables")]
+    [SerializeField] public bool v_player_movement_enabled;
+    [Space(10)]
     [SerializeField] public KeyCode Forward;
     [SerializeField] public KeyCode Left;
     [SerializeField] public KeyCode Backward;
