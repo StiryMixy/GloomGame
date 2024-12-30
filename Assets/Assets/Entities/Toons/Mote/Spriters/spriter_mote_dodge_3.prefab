@@ -140,9 +140,10 @@ MonoBehaviour:
     v_frame_profile_inversion: 1
     v_frame_scale: 0.6
     v_sprite_renderer: {fileID: 2091285636448807113}
+    v_sprite_renderer_material: {fileID: 2100000, guid: 82ea68a891e7c26409bab7973a21460d, type: 2}
     v_frame_list:
     - {fileID: 21300000, guid: 25074798f6d8634408815352febd3e98, type: 3}
-    - {fileID: 21300000, guid: e451d8a9cdd690947b158ac917314e4f, type: 3}
+    - {fileID: 21300000, guid: d58d14b34582b9b439d9eb53fc265c6c, type: 3}
     v_frame_counter: 0
     v_frame_counter_stay_timer: 0
     v_frame_counter_stay_timer_randomized_gate: 0

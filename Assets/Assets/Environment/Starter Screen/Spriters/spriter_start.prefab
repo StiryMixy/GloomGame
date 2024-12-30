@@ -140,6 +140,7 @@ MonoBehaviour:
     v_frame_profile_inversion: 0
     v_frame_scale: 0.6
     v_sprite_renderer: {fileID: 2933356854544542210}
+    v_sprite_renderer_material: {fileID: 0}
     v_frame_list:
     - {fileID: 21300000, guid: 1920f294d6f818944b244f71f8c12ff0, type: 3}
     v_frame_counter: 0

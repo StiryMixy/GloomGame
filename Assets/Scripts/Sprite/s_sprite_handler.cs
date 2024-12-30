@@ -12,6 +12,7 @@ public class svl_sprite_frame
     [SerializeField] public bool v_frame_profile_inversion;
     [SerializeField] public float v_frame_scale;
     [SerializeField] public SpriteRenderer v_sprite_renderer;
+    [SerializeField] public Material v_sprite_renderer_material;
     [SerializeField] public List<Sprite> v_frame_list;
     [Header("Reference Variables")]
     [SerializeField] public int v_frame_counter;
@@ -175,6 +176,13 @@ public class s_sprite_handler : MonoBehaviour
             v_sprite_frame_setup.v_sprite_renderer.transform.localScale = new Vector3(tv_targetScale, tv_targetScale, tv_targetScale);
         }
         //SCALE END
+
+        //MATERIAL START
+        if (v_sprite_frame_setup.v_sprite_renderer_material)
+        {
+            v_sprite_frame_setup.v_sprite_renderer.material = v_sprite_frame_setup.v_sprite_renderer_material;
+        }
+        //MATERIAL END
 
         //FRAME INDEX START
         if (v_sprite_frame_setup.v_frame_play)

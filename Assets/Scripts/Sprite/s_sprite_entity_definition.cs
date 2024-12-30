@@ -219,6 +219,7 @@ public class s_sprite_entity_definition : MonoBehaviour
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_frame_setup.v_frame_loops = sv_target_script.v_sprite_frame_setup.v_frame_loops;
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_frame_setup.v_frame_profile_inversion = sv_target_script.v_sprite_frame_setup.v_frame_profile_inversion;
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_frame_setup.v_frame_scale = sv_target_script.v_sprite_frame_setup.v_frame_scale;
+        v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_frame_setup.v_sprite_renderer_material = sv_target_script.v_sprite_frame_setup.v_sprite_renderer_material;
 
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_frame_setup.v_frame_list.Clear();
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_frame_setup.v_frame_list.AddRange(sv_target_script.v_sprite_frame_setup.v_frame_list);

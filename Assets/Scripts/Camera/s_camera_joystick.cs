@@ -37,7 +37,7 @@ public class s_camera_joystick : MonoBehaviour
     [SerializeField] public svl_camera_joystick_focus_detach v_camera_joystick_focus_detach_setup = new svl_camera_joystick_focus_detach();
 
     [Header("Camera Joystick Debug Setup")]
-    [SerializeField] public sgvl_debug_controller v_camera_joystick_debug_render_setup = new sgvl_debug_controller();
+    [SerializeField] public sgvl_debug_full_controller v_camera_joystick_debug_render_setup = new sgvl_debug_full_controller();
 
     void Start()
     {

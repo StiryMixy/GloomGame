@@ -48,7 +48,7 @@ public class s_camera : MonoBehaviour
     [SerializeField] public svl_camera_focus v_camera_focus_setup = new svl_camera_focus();
 
     [Header("Camera Debug Setup")]
-    [SerializeField] public sgvl_debug_controller v_camera_debug_render_setup = new sgvl_debug_controller();
+    [SerializeField] public sgvl_debug_full_controller v_camera_debug_render_setup = new sgvl_debug_full_controller();
 
     void Start()
     {

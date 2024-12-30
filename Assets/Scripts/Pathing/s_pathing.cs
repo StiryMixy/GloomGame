@@ -49,7 +49,7 @@ public class s_pathing : MonoBehaviour
     [SerializeField] public List<GameObject> v_pathing_collider_current_collisions_list;
 
     [Header("Pathing Debug Setup")]
-    [SerializeField] public sgvl_debug_controller v_pathing_debug_render_setup = new sgvl_debug_controller();
+    [SerializeField] public sgvl_debug_full_controller v_pathing_debug_render_setup = new sgvl_debug_full_controller();
 
     void Start()
     {
@@ -58,7 +58,7 @@ public class s_pathing : MonoBehaviour
 
     void Update()
     {
-        v_pathing_render_setup.v_pathing_render_enable = f_pathing_render_controller(v_pathing_render_setup.v_pathing_render_enable);
+        v_pathing_render_setup.v_pathing_render_enable = v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_pathing_render_setup.v_pathing_render_enable;
         v_pathing_type_setup.v_pathing_type_is_disregarded = false;
 
         if (v_pathing_render_setup.v_pathing_render_enable)
@@ -97,10 +97,13 @@ public class s_pathing : MonoBehaviour
         }
         if (v_pathing_scene_changer_setup.v_pathing_scene_changer_enabled) 
         {
-            if (sv_other_object.gameObject.TryGetComponent<s_scene_reset_manager>(out var ov_scene_reset_manager))
+            if (v_pathing_scene_changer_setup.v_pathing_scene_changer_target != "")
             {
-                ov_scene_reset_manager.f_scene_reset_action();
-                SceneManager.LoadScene(sceneName: v_pathing_scene_changer_setup.v_pathing_scene_changer_target);
+                if (sv_other_object.gameObject.TryGetComponent<s_scene_reset_manager>(out var ov_scene_reset_manager))
+                {
+                    ov_scene_reset_manager.f_scene_reset_action();
+                    SceneManager.LoadScene(sceneName: v_pathing_scene_changer_setup.v_pathing_scene_changer_target);
+                }
             }
         }
     }
@@ -128,36 +131,6 @@ public class s_pathing : MonoBehaviour
 
         v_pathing_debug_render_setup.v_debug_manager_gameobject = GameObject.Find(v_pathing_debug_render_setup.v_debug_manager_gameobject_name);
         v_pathing_debug_render_setup.v_debug_manager_gameobject_script = v_pathing_debug_render_setup.v_debug_manager_gameobject.GetComponent<s_debug_controller>();
-    }
-
-    public bool f_pathing_render_controller(bool sv_pathing_render)
-    {
-        if (v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_pathing_render_setup.v_pathing_render_key_press_mode.Equals(v_tags_key_press_mode_list.Toggle))
-        {
-            if (Input.GetKeyDown(v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_pathing_render_setup.v_pathing_render_key))
-            {
-                return (!sv_pathing_render);
-            }
-            else
-            {
-                return (sv_pathing_render);
-            }
-        }
-        else if (v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_pathing_render_setup.v_pathing_render_key_press_mode.Equals(v_tags_key_press_mode_list.Hold))
-        {
-            if (Input.GetKey(v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_pathing_render_setup.v_pathing_render_key))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return (sv_pathing_render);
-        }
     }
 
     public void f_pathing_targetted_by_player_default_movement()

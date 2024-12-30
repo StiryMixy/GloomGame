@@ -34,7 +34,7 @@ public class s_scene_reset_manager : MonoBehaviour
     [SerializeField] public svl_scene_reset_manager_focus v_scene_reset_manager_focus_setup = new svl_scene_reset_manager_focus();
 
     [Header("Scene Reset Manager Debug Setup")]
-    [SerializeField] public sgvl_debug_controller v_scene_reset_manager_debug_render_setup = new sgvl_debug_controller();
+    [SerializeField] public sgvl_debug_full_controller v_scene_reset_manager_debug_render_setup = new sgvl_debug_full_controller();
 
     void Start()
     {

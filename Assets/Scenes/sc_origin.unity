@@ -542,6 +542,7 @@ MonoBehaviour:
   v_key_manager_pathing_render_setup:
     v_pathing_render_key: 99
     v_pathing_render_key_press_mode: 0
+    v_pathing_render_enable: 0
   v_key_manager_player_movement_setup:
     Forward: 119
     Left: 97
@@ -3360,6 +3361,7 @@ MonoBehaviour:
     v_frame_profile_inversion: 0
     v_frame_scale: 0
     v_sprite_renderer: {fileID: 6710772827306796670}
+    v_sprite_renderer_material: {fileID: 0}
     v_frame_list: []
     v_frame_counter: 0
     v_frame_counter_stay_timer: 0
@@ -4935,7 +4937,7 @@ MonoBehaviour:
     v_player_planned_position: {x: 0, y: 0, z: 0}
   v_player_sprite_setup:
     v_sprite_enabled: 1
-    v_sprite_entity: 1
+    v_sprite_entity: 0
     v_sprite_state: 0
     v_sprite_state_orientation: 0
     v_sprite_state_profile: 0

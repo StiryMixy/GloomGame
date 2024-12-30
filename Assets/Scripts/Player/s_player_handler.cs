@@ -54,7 +54,7 @@ public class s_player_handler : MonoBehaviour
     [Header("Player Sprite Setup")]
     [SerializeField] public svl_player_sprite v_player_sprite_setup = new svl_player_sprite();
     [Header("Player Debug Setup")]
-    [SerializeField] public sgvl_debug_controller v_player_debug_render_setup = new sgvl_debug_controller();
+    [SerializeField] public sgvl_debug_full_controller v_player_debug_render_setup = new sgvl_debug_full_controller();
 
     void Start()
     {

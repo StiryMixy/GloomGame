@@ -29,6 +29,8 @@ public class svl_key_manager_pathing_render
     [Header("Configurable Variables")]
     [SerializeField] public KeyCode v_pathing_render_key;
     [SerializeField] public v_tags_key_press_mode_list v_pathing_render_key_press_mode;
+    [Header("Reference Variables")]
+    [SerializeField] public bool v_pathing_render_enable;
 }
 
 [Serializable]
@@ -83,6 +85,7 @@ public class s_key_manager : MonoBehaviour
 
     void Update()
     {
+        v_key_manager_pathing_render_setup.v_pathing_render_enable = f_pathing_render_controller(v_key_manager_pathing_render_setup.v_pathing_render_enable);
         if (v_key_manager_detect_key_setup.v_key_manager_function_enabled)
         {
             f_key_manager_detect_key_module();
@@ -127,4 +130,35 @@ public class s_key_manager : MonoBehaviour
             }
         }
     }
+
+    public bool f_pathing_render_controller(bool sv_pathing_render)
+    {
+        if (v_key_manager_pathing_render_setup.v_pathing_render_key_press_mode.Equals(v_tags_key_press_mode_list.Toggle))
+        {
+            if (Input.GetKeyDown(v_key_manager_pathing_render_setup.v_pathing_render_key))
+            {
+                return (!sv_pathing_render);
+            }
+            else
+            {
+                return (sv_pathing_render);
+            }
+        }
+        else if (v_key_manager_pathing_render_setup.v_pathing_render_key_press_mode.Equals(v_tags_key_press_mode_list.Hold))
+        {
+            if (Input.GetKey(v_key_manager_pathing_render_setup.v_pathing_render_key))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return (sv_pathing_render);
+        }
+    }
+
 }

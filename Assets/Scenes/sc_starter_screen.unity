@@ -316,6 +316,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6765162247835717615, guid: a0bdcb85f2cbcfa41a267d28dbca5abe, type: 3}
   m_PrefabInstance: {fileID: 844367237}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &890153404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 890153405}
+  - component: {fileID: 890153406}
+  m_Layer: 0
+  m_Name: scene_dictator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &890153405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890153404}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &890153406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890153404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311ab39750b70564381bf4b101195e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  v_player_dictator_setup:
+    v_player_gameobject_name: entity_player
+    v_player_gameobject_dictate_element:
+      v_sprite_entity: 1
+    v_player_gameobject: {fileID: 0}
+    v_player_gameobject_script: {fileID: 0}
 --- !u!4 &1004906230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8187929862995265639, guid: 9a100b7d32d201048915daf6b698da5a, type: 3}
@@ -963,3 +1013,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1226154460}
   - {fileID: 1134323676}
+  - {fileID: 890153405}

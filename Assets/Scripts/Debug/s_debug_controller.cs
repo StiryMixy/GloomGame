@@ -4,11 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class sgvl_debug_controller
+public class sgvl_debug_full_controller
 {
     [Header("Configurable Variables")]
     [SerializeField] public string v_debug_manager_gameobject_name;
     [SerializeField] public List<GameObject> v_debug_gameobjects_list;
+    [Header("Reference Variables")]
+    [SerializeField] public GameObject v_debug_manager_gameobject;
+    [SerializeField] public s_debug_controller v_debug_manager_gameobject_script;
+}
+
+[Serializable]
+public class sgvl_debug_half_controller
+{
+    [Header("Configurable Variables")]
+    [SerializeField] public string v_debug_manager_gameobject_name;
     [Header("Reference Variables")]
     [SerializeField] public GameObject v_debug_manager_gameobject;
     [SerializeField] public s_debug_controller v_debug_manager_gameobject_script;
@@ -61,5 +71,10 @@ public class s_debug_controller : MonoBehaviour
                 r.enabled = v_debug_renderers_enabled;
             }
         }
+    }
+
+    public bool f_debug_renderer_attach()
+    {
+        return v_debug_renderers_enabled;
     }
 }
