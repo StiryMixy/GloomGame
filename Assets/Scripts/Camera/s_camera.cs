@@ -83,7 +83,8 @@ public class s_camera : MonoBehaviour
         {
             if (v_camera_black_fade_setup.v_camera_black_fade_input_block_upward)
             {
-                v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_max;
+                v_camera_black_fade_setup.v_camera_black_fade_target = v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_max;
+                v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_camera_black_fade_setup.v_camera_black_fade_target;
 
                 v_camera_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.v_player_movement_enabled = false;
                 
