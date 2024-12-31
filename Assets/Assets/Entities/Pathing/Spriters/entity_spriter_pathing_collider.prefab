@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -500465977
-  m_SortingLayer: 5
+  m_SortingLayerID: 1149127739
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -200,6 +200,7 @@ MonoBehaviour:
     v_sprite_float_direction_is_down_bool: 0
     v_sprite_float_up_bool_direction_change_check: 0
     v_sprite_float_up_bool_frame_move_check: 0
+    v_sprite_default_position: {x: 0, y: 0, z: 0}
   v_sprite_index_setup:
   - v_timer_stay: 1
     v_timer_stay_randomized: 0

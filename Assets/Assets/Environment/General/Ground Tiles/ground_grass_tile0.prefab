@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e6bc646e59ff16442aed767222c4d888, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  m_Color: {r: 0.49411768, g: 0.7294118, b: 0.3372549, a: 0.5019608}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -234,6 +234,7 @@ MonoBehaviour:
     v_sprite_float_direction_is_down_bool: 0
     v_sprite_float_up_bool_direction_change_check: 0
     v_sprite_float_up_bool_frame_move_check: 0
+    v_sprite_default_position: {x: 0, y: 0, z: 0}
   v_sprite_index_setup:
   - v_timer_stay: 1
     v_timer_stay_randomized: 0

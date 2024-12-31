@@ -143,6 +143,7 @@ MonoBehaviour:
     v_pathing_type_is_disregarded: 0
   v_pathing_scene_changer_setup:
     v_pathing_scene_changer_enabled: 0
+    v_pathing_scene_changer_target: 
   v_pathing_collider_current_collisions_list: []
   v_pathing_debug_render_setup:
     v_debug_manager_gameobject_name: entity_debug_manager
