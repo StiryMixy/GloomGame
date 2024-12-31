@@ -123,6 +123,7 @@ public class svl_sprite_float_up_handler
     [SerializeField] public bool v_sprite_float_direction_is_down_bool = false;
     [SerializeField] public bool v_sprite_float_up_bool_direction_change_check = false;
     [SerializeField] public bool v_sprite_float_up_bool_frame_move_check;
+    [SerializeField] public Vector3 v_sprite_default_position = Vector3.zero;
 }
 
 [Serializable]
@@ -161,6 +162,7 @@ public class s_sprite_handler : MonoBehaviour
     {
         f_sprite_handler_gameobject_finder();
         v_sprite_frame_setup.v_sprite_renderer.color = new Color(v_sprite_frame_setup.v_sprite_renderer.color.r, v_sprite_frame_setup.v_sprite_renderer.color.g, v_sprite_frame_setup.v_sprite_renderer.color.b, v_sprite_alpha_setup.v_sprite_alpha);
+        v_sprite_float_up_setup.v_sprite_default_position = v_sprite_frame_setup.v_sprite_renderer.transform.localPosition;
     }
 
     void Update()
@@ -486,9 +488,9 @@ public class s_sprite_handler : MonoBehaviour
         }
         else
         {
-            if (Vector3.Distance(v_sprite_frame_setup.v_sprite_renderer.transform.localPosition, Vector3.zero) > 0)
+            if (Vector3.Distance(v_sprite_frame_setup.v_sprite_renderer.transform.localPosition, v_sprite_float_up_setup.v_sprite_default_position) > 0)
             {
-                Vector3 tv_return_position = Vector3.MoveTowards(v_sprite_frame_setup.v_sprite_renderer.transform.localPosition, Vector3.zero, v_sprite_time_handler_setup.v_time_handler_script.f_time_level_rate_get(v_sprite_time_handler_setup.v_time_handler_level) / 3);
+                Vector3 tv_return_position = Vector3.MoveTowards(v_sprite_frame_setup.v_sprite_renderer.transform.localPosition, v_sprite_float_up_setup.v_sprite_default_position, v_sprite_time_handler_setup.v_time_handler_script.f_time_level_rate_get(v_sprite_time_handler_setup.v_time_handler_level) / 3);
                 v_sprite_frame_setup.v_sprite_renderer.transform.localPosition = tv_return_position;
             }
         }

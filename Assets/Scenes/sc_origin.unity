@@ -4050,6 +4050,8 @@ MonoBehaviour:
     v_camera_black_fade_enabled: 1
     v_camera_black_fade_gameobject_script: {fileID: 1944251393}
     v_camera_black_fade_target: 0
+    v_camera_black_fade_input_block_upward: 0
+    v_camera_black_fade_input_block_downward: 0
   v_camera_debug_render_setup:
     v_debug_manager_gameobject_name: entity_debug_manager
     v_debug_gameobjects_list:
