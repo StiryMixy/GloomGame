@@ -62,6 +62,16 @@ public class svl_sprite_entity_state
     [SerializeField] public bool v_sprite_entity_counter_reset = false;
 }
 
+[Serializable]
+public class svl_sprite_entity_state_shadow
+{
+    [Header("Configurable Variables")]
+    [SerializeField] public bool v_sprite_entity_shadow_enabled = false;
+    [SerializeField] public bool v_sprite_entity_shadow_is_white = false;
+    [SerializeField] public float v_sprite_entity_shadow_scale;
+    [SerializeField] public s_sprite_handler v_sprite_entity_shadow_script;
+}
+
 public class s_sprite_entity_definition : MonoBehaviour
 {
     [Header("Sprite Entity Time Handler Setup")]
@@ -73,6 +83,9 @@ public class s_sprite_entity_definition : MonoBehaviour
     [Header("Sprite Entity Definition Setup")]
     [SerializeField] public svl_sprite_entity_definition v_sprite_entity_definition_setup = new svl_sprite_entity_definition();
 
+    [Header("Sprite Entity Shadow Setup")]
+    [SerializeField] public svl_sprite_entity_state_shadow v_sprite_entity_state_shadow_setup = new svl_sprite_entity_state_shadow();
+
     void Start()
     {
         f_sprite_entity_gameobject_finder();
@@ -81,6 +94,7 @@ public class s_sprite_entity_definition : MonoBehaviour
     void Update()
     {
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_time_handler_setup.v_time_handler_level = v_sprite_entity_time_handler_setup.v_time_handler_level;
+        v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_script.v_sprite_time_handler_setup.v_time_handler_level = v_sprite_entity_time_handler_setup.v_time_handler_level;
 
         v_sprite_entity_state_setup.v_sprite_entity_change_state_gate = false;
         if (!v_sprite_entity_state_setup.v_sprite_state.Equals(v_sprite_entity_state_setup.v_sprite_state_current))
@@ -134,6 +148,8 @@ public class s_sprite_entity_definition : MonoBehaviour
             v_sprite_entity_state_setup.v_sprite_entity_change_state_gate = false;
             v_sprite_entity_state_setup.v_sprite_entity_change_state_gate_bypass = false;
         }
+
+        f_sprite_shadow_controller();
     }
 
     public void f_sprite_entity_gameobject_finder()
@@ -254,6 +270,7 @@ public class s_sprite_entity_definition : MonoBehaviour
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_sort_setup.v_sort_modifier = sv_target_script.v_sprite_sort_setup.v_sort_modifier;
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_sort_setup.v_enable_parent = sv_target_script.v_sprite_sort_setup.v_enable_parent;
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_sort_setup.v_enable_parent_root = sv_target_script.v_sprite_sort_setup.v_enable_parent_root;
+        v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_sort_setup.v_sort_modifier = sv_target_script.v_sprite_sort_setup.v_sort_modifier;
 
         if (sv_reset_counter)
         {
@@ -279,10 +296,34 @@ public class s_sprite_entity_definition : MonoBehaviour
     {
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.f_sprite_rewind_to_first_frame();
     }
+    
+    public void f_sprite_shadow_controller()
+    {
+        if (v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_enabled)
+        {
+            v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_script.v_sprite_alpha_setup.v_sprite_alpha_target_max;
+
+            if (v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_is_white)
+            {
+                v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_script.v_sprite_frame_setup.v_frame_counter = 1;
+            }
+            else
+            {
+                v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_script.v_sprite_frame_setup.v_frame_counter = 0;
+            }
+
+            v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_script.v_sprite_frame_setup.v_frame_scale = v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_scale;
+        }
+        else
+        {
+            v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_script.v_sprite_alpha_setup.v_sprite_alpha_target_min;
+        }
+    }
 
     public void f_sprite_manual_counter_reset()
     {
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_frame_setup.v_frame_counter = 0;
         v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.f_sprite_index_element_counter_parameters_reset();
     }
+
 }

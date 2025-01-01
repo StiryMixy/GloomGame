@@ -315,6 +315,10 @@ public class s_player_handler : MonoBehaviour
 
                 v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.Clear();
                 v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_definition_setup.v_sprite_entity_state_index_list.AddRange(v_player_sprite_setup.v_sprite_target_object_script.v_sprite_entity_definition_setup.v_sprite_entity_state_index_list);
+
+                v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_enabled = v_player_sprite_setup.v_sprite_target_object_script.v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_enabled;
+                v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_is_white = v_player_sprite_setup.v_sprite_target_object_script.v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_is_white;
+                v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_scale = v_player_sprite_setup.v_sprite_target_object_script.v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_scale;
             }
 
             v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Idle;
