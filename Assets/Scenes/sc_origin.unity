@@ -4172,6 +4172,8 @@ MonoBehaviour:
     v_sprite_entity_definition_fallback_script: {fileID: 0}
   v_sprite_entity_state_shadow_setup:
     v_sprite_entity_shadow_enabled: 0
+    v_sprite_entity_shadow_is_white: 0
+    v_sprite_entity_shadow_scale: 0
     v_sprite_entity_shadow_script: {fileID: 1433984749}
 --- !u!33 &4549888045120102673
 MeshFilter:

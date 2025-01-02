@@ -33,6 +33,7 @@ public class s_debug_controller : MonoBehaviour
 
     void Start()
     {
+        UnityEngine.Rendering.DebugManager.instance.enableRuntimeUI = false;
         f_debug_gameobject_finder();
     }
 

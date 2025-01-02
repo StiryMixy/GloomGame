@@ -509,11 +509,11 @@ public class s_sprite_handler : MonoBehaviour
                 v_sprite_sort_setup.v_available_parent = transform.parent.gameObject;
             }
 
-            v_sprite_frame_setup.v_sprite_renderer.sortingOrder = (int)(v_sprite_sort_setup.v_available_parent.transform.position.z + v_sprite_sort_setup.v_sort_modifier);
+            v_sprite_frame_setup.v_sprite_renderer.sortingOrder = (int)((v_sprite_sort_setup.v_available_parent.transform.position.z * 100) + v_sprite_sort_setup.v_sort_modifier);
         }
         else
         {
-            v_sprite_frame_setup.v_sprite_renderer.sortingOrder = (int)(transform.position.z + v_sprite_sort_setup.v_sort_modifier);
+            v_sprite_frame_setup.v_sprite_renderer.sortingOrder = (int)((transform.position.z * 100) + v_sprite_sort_setup.v_sort_modifier);
         }
     }
 
