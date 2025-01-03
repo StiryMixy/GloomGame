@@ -41,6 +41,16 @@ public class svl_player_sprite
     [SerializeField] public s_sprite_entity_definition v_sprite_target_object_script;
 }
 
+[Serializable]
+public class svl_player_sight_collider
+{
+    [Header("Configurable Variables")]
+    [SerializeField] public GameObject v_player_sight_collider_object;
+    [Header("Reference Variables")]
+    [SerializeField] public v_tags_entity_direction_list v_player_sight_collider_object_last_direction;
+    [SerializeField] public bool v_player_sight_collider_direction_changed = false;
+}
+
 public class s_player_handler : MonoBehaviour
 {
     [Header("Player Time Handler Setup")]
@@ -53,6 +63,8 @@ public class s_player_handler : MonoBehaviour
     [SerializeField] public svl_player_movement v_player_movement_setup = new svl_player_movement();
     [Header("Player Sprite Setup")]
     [SerializeField] public svl_player_sprite v_player_sprite_setup = new svl_player_sprite();
+    [Header("Player Sight Collider Setup")]
+    [SerializeField] public svl_player_sight_collider v_player_sight_collider_setup = new svl_player_sight_collider();
     [Header("Player Debug Setup")]
     [SerializeField] public sgvl_debug_full_controller v_player_debug_render_setup = new sgvl_debug_full_controller();
 
@@ -67,6 +79,7 @@ public class s_player_handler : MonoBehaviour
         v_player_movement_setup.v_player_collider_object_script.v_player_collider_time_handler_setup.v_time_handler_level = v_player_time_handler_setup.v_time_handler_level;
         f_player_sprite_handler();
         f_player_movement_module();
+        f_player_sight_collider_handler();
         f_player_sprite_result_reader();
         v_player_debug_render_setup.v_debug_manager_gameobject_script.f_debug_renderer_controller(v_player_debug_render_setup.v_debug_gameobjects_list);
     }
@@ -250,6 +263,10 @@ public class s_player_handler : MonoBehaviour
             
             v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Dodge;
             v_player_sprite_setup.v_player_sprite_caller_object_script.f_sprite_manually_rewind_to_first_frame();
+            if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_dodge_cooldown > 0)
+            {
+                v_player_sight_collider_setup.v_player_sight_collider_direction_changed = true;
+            }
         }
         else if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_cooldown_counter > 0)
         {
@@ -332,6 +349,70 @@ public class s_player_handler : MonoBehaviour
             v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_state_setup.v_sprite_state = v_player_sprite_setup.v_sprite_state;
             v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_state_setup.v_sprite_state_orientation = v_player_sprite_setup.v_sprite_state_orientation;
             v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_state_setup.v_sprite_state_profile = v_player_sprite_setup.v_sprite_state_profile;
+        }
+    }
+
+    public void f_player_sight_collider_handler()
+    {
+        if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_cooldown_counter > 0)
+        {
+            if (v_player_sight_collider_setup.v_player_sight_collider_direction_changed)
+            {
+                if (v_player_sight_collider_setup.v_player_sight_collider_object_last_direction.Equals(v_tags_entity_direction_list.Right))
+                {
+                    v_player_sight_collider_setup.v_player_sight_collider_object_last_direction = v_tags_entity_direction_list.Backward;
+                }
+                else if (v_player_sight_collider_setup.v_player_sight_collider_object_last_direction.Equals(v_tags_entity_direction_list.Backward))
+                {
+                    v_player_sight_collider_setup.v_player_sight_collider_object_last_direction = v_tags_entity_direction_list.Right;
+                }
+                else if (v_player_sight_collider_setup.v_player_sight_collider_object_last_direction.Equals(v_tags_entity_direction_list.Left))
+                {
+                    v_player_sight_collider_setup.v_player_sight_collider_object_last_direction = v_tags_entity_direction_list.Forward;
+                }
+                else if (v_player_sight_collider_setup.v_player_sight_collider_object_last_direction.Equals(v_tags_entity_direction_list.Forward))
+                {
+                    v_player_sight_collider_setup.v_player_sight_collider_object_last_direction = v_tags_entity_direction_list.Left;
+                }
+
+                v_player_sight_collider_setup.v_player_sight_collider_direction_changed = false;
+            }
+        }
+        else
+        {
+            if ((v_player_sprite_setup.v_sprite_state_orientation.Equals(v_tags_sprite_orientation_list.Front)) && (v_player_sprite_setup.v_sprite_state_profile.Equals(v_tags_sprite_profile_list.Right)))
+            {
+                v_player_sight_collider_setup.v_player_sight_collider_object_last_direction = v_tags_entity_direction_list.Right;
+            }
+            else if ((v_player_sprite_setup.v_sprite_state_orientation.Equals(v_tags_sprite_orientation_list.Front)) && (v_player_sprite_setup.v_sprite_state_profile.Equals(v_tags_sprite_profile_list.Left)))
+            {
+                v_player_sight_collider_setup.v_player_sight_collider_object_last_direction = v_tags_entity_direction_list.Backward;
+            }
+            else if ((v_player_sprite_setup.v_sprite_state_orientation.Equals(v_tags_sprite_orientation_list.Back)) && (v_player_sprite_setup.v_sprite_state_profile.Equals(v_tags_sprite_profile_list.Left)))
+            {
+                v_player_sight_collider_setup.v_player_sight_collider_object_last_direction = v_tags_entity_direction_list.Left;
+            }
+            else if ((v_player_sprite_setup.v_sprite_state_orientation.Equals(v_tags_sprite_orientation_list.Back)) && (v_player_sprite_setup.v_sprite_state_profile.Equals(v_tags_sprite_profile_list.Right)))
+            {
+                v_player_sight_collider_setup.v_player_sight_collider_object_last_direction = v_tags_entity_direction_list.Forward;
+            }
+        }
+        
+        if (v_player_sight_collider_setup.v_player_sight_collider_object_last_direction.Equals(v_tags_entity_direction_list.Right))
+        {
+            v_player_sight_collider_setup.v_player_sight_collider_object.transform.localEulerAngles = Vector3.zero;
+        }
+        else if (v_player_sight_collider_setup.v_player_sight_collider_object_last_direction.Equals(v_tags_entity_direction_list.Backward))
+        {
+            v_player_sight_collider_setup.v_player_sight_collider_object.transform.localEulerAngles = new Vector3(0, 90, 0);
+        }
+        else if (v_player_sight_collider_setup.v_player_sight_collider_object_last_direction.Equals(v_tags_entity_direction_list.Left))
+        {
+            v_player_sight_collider_setup.v_player_sight_collider_object.transform.localEulerAngles = new Vector3(0, 180, 0);
+        }
+        else if (v_player_sight_collider_setup.v_player_sight_collider_object_last_direction.Equals(v_tags_entity_direction_list.Forward))
+        {
+            v_player_sight_collider_setup.v_player_sight_collider_object.transform.localEulerAngles = new Vector3(0, 270, 0);
         }
     }
 

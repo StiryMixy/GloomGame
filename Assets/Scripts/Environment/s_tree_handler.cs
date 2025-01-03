@@ -21,7 +21,7 @@ public class svl_tree_sprite_handler
     [Header("Reference Variables")]
     [SerializeField] public s_sprite_handler v_tree_visible_sprite_gameobject_script;
     [SerializeField] public s_sprite_handler v_tree_occluded_sprite_gameobject_script;
-    [SerializeField] public bool v_tree_detected_player;
+    [SerializeField] public bool v_tree_detected_entity;
 }
 
 public class s_tree_handler : MonoBehaviour
@@ -33,7 +33,7 @@ public class s_tree_handler : MonoBehaviour
     [SerializeField] public svl_tree_sprite_handler v_tree_sprite_handler_setup = new svl_tree_sprite_handler();
 
     [Header("Tree Collision Handler Setup")]
-    [SerializeField] public bool v_tree_detected_player;
+    [SerializeField] public bool v_tree_detected_entity;
     [SerializeField] public List<GameObject> v_tree_collision_list;
 
     void Start()
@@ -45,9 +45,19 @@ public class s_tree_handler : MonoBehaviour
     void Update()
     {
         f_tree_shadow_controller();
-        if (v_tree_sprite_handler_setup.v_tree_detected_player != v_tree_detected_player)
+
+        if (v_tree_collision_list.Count > 0)
         {
-            v_tree_sprite_handler_setup.v_tree_detected_player = v_tree_detected_player;
+            v_tree_detected_entity = true;
+        }
+        else
+        {
+            v_tree_detected_entity = false;
+        }
+
+        if (v_tree_sprite_handler_setup.v_tree_detected_entity != v_tree_detected_entity)
+        {
+            v_tree_sprite_handler_setup.v_tree_detected_entity = v_tree_detected_entity;
 
             f_tree_entity_spriter();
         }
@@ -59,7 +69,10 @@ public class s_tree_handler : MonoBehaviour
         {
             if (sv_other_object.gameObject.GetComponent<s_player_handler>())
             {
-                v_tree_detected_player = true;
+                v_tree_collision_list.Add(sv_other_object.gameObject);
+            }
+            else if (sv_other_object.gameObject.GetComponent<s_player_sight_collider_handler>())
+            {
                 v_tree_collision_list.Add(sv_other_object.gameObject);
             }
         }
@@ -76,7 +89,6 @@ public class s_tree_handler : MonoBehaviour
         {
             if (v_tree_collision_list.Contains(sv_other_object.gameObject))
             {
-                v_tree_detected_player = false;
                 v_tree_collision_list.Remove(sv_other_object.gameObject);
             }
         }
@@ -166,7 +178,7 @@ public class s_tree_handler : MonoBehaviour
 
     public void f_tree_entity_spriter()
     {
-        if (v_tree_sprite_handler_setup.v_tree_detected_player)
+        if (v_tree_sprite_handler_setup.v_tree_detected_entity)
         {
             f_tree_entity_definition_reader(true, true, v_tags_sprite_profile_list.Right, v_tree_sprite_handler_setup.v_tree_occluded_sprite_gameobject_script);
         }
