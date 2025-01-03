@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/sc_tutorial_courtyard.unity
     guid: 147ac781cded88d4887b359ed0193a04
+  - enabled: 1
+    path: Assets/Scenes/sc_tutorial_hallway_from_courtyard.unity
+    guid: 4bb02c11756fcd94caf7f68264a38450
   m_configObjects: {}

@@ -248,6 +248,8 @@ public class s_player_collider_controller : MonoBehaviour
             v_player_collider_movement_setup.v_player_collider_movement_key_index = 0;
             v_player_collider_movement_setup.v_player_collider_movement_key_index_list_direction_gate = false;
             v_player_collider_movement_setup.v_player_collider_movement_default_sampler_gameobject.transform.localPosition = new Vector3(0, 0, 0);
+            v_player_collider_movement_setup.v_player_collider_movement_default_sampler_gameobject_script.v_player_collider_default_sampler_movement_setup.v_player_collider_default_sampler_movement_detected_target = Vector3.zero;
+            v_player_collider_movement_setup.v_player_collider_movement_default_sampler_gameobject_script.v_player_collider_default_sampler_movement_setup.v_player_collider_default_sampler_movement_intended_target = Vector3.zero;
         }
 
         if (!v_player_collider_movement_setup.v_player_collider_movement_dodge_detected)

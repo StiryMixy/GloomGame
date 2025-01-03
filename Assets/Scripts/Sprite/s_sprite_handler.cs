@@ -538,4 +538,9 @@ public class s_sprite_handler : MonoBehaviour
         v_sprite_frame_setup.v_frame_counter = 0;
         f_sprite_index_element_counter_parameters_reset();
     }
+
+    public bool f_sprite_reached_end_of_frames()
+    {
+        return (v_sprite_frame_setup.v_frame_counter >= (v_sprite_index_setup.Count - 1));
+    }
 }
