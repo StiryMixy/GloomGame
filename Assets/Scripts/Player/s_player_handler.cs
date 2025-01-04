@@ -121,88 +121,94 @@ public class s_player_handler : MonoBehaviour
         f_player_movement_command_verify(v_player_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Left);
         f_player_movement_command_verify(v_player_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Right);
 
-        if ((!v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_detected) && (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_cooldown_counter <= 0))
+        if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_detected)
         {
-            if (v_player_movement_setup.v_player_movement_key_list.Count > 0)
+            v_player_movement_setup.v_player_movement_key_list.Clear();
+        }
+        if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_cooldown_counter > 0)
+        {
+            v_player_movement_setup.v_player_movement_key_list.Clear();
+        }
+
+        if (v_player_movement_setup.v_player_movement_key_list.Count > 0)
+        {
+            if (v_player_movement_setup.v_player_movement_key_index >= v_player_movement_setup.v_player_movement_key_list.Count)
             {
-                if (v_player_movement_setup.v_player_movement_key_index >= v_player_movement_setup.v_player_movement_key_list.Count)
-                {
-                    v_player_movement_setup.v_player_movement_key_index = v_player_movement_setup.v_player_movement_key_list.Count - 1;
-                }
-                else if (v_player_movement_setup.v_player_movement_key_index < 0)
-                {
-                    v_player_movement_setup.v_player_movement_key_index = 0;
-                }
+                v_player_movement_setup.v_player_movement_key_index = v_player_movement_setup.v_player_movement_key_list.Count - 1;
+            }
+            else if (v_player_movement_setup.v_player_movement_key_index < 0)
+            {
+                v_player_movement_setup.v_player_movement_key_index = 0;
+            }
 
-                int tv_targetIndex = v_player_movement_setup.v_player_movement_key_index;
-                if (v_player_movement_setup.v_player_movement_key_list[tv_targetIndex] == v_player_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Forward)
+            int tv_targetIndex = v_player_movement_setup.v_player_movement_key_index;
+            if (v_player_movement_setup.v_player_movement_key_list[tv_targetIndex] == v_player_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Forward)
+            {
+                if (v_player_sprite_setup.v_sprite_enabled)
                 {
-                    if (v_player_sprite_setup.v_sprite_enabled)
-                    {
-                        v_player_sprite_setup.v_sprite_state_orientation = v_tags_sprite_orientation_list.Back;
-                    }
+                    v_player_sprite_setup.v_sprite_state_orientation = v_tags_sprite_orientation_list.Back;
                 }
-                else if (v_player_movement_setup.v_player_movement_key_list[tv_targetIndex] == v_player_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Left)
+            }
+            else if (v_player_movement_setup.v_player_movement_key_list[tv_targetIndex] == v_player_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Left)
+            {
+                if (v_player_sprite_setup.v_sprite_enabled)
                 {
-                    if (v_player_sprite_setup.v_sprite_enabled)
-                    {
-                        v_player_sprite_setup.v_sprite_state_profile = v_tags_sprite_profile_list.Left;
-                    }
+                    v_player_sprite_setup.v_sprite_state_profile = v_tags_sprite_profile_list.Left;
                 }
-                else if (v_player_movement_setup.v_player_movement_key_list[tv_targetIndex] == v_player_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Backward)
+            }
+            else if (v_player_movement_setup.v_player_movement_key_list[tv_targetIndex] == v_player_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Backward)
+            {
+                if (v_player_sprite_setup.v_sprite_enabled)
                 {
-                    if (v_player_sprite_setup.v_sprite_enabled)
-                    {
-                        v_player_sprite_setup.v_sprite_state_orientation = v_tags_sprite_orientation_list.Front;
-                    }
+                    v_player_sprite_setup.v_sprite_state_orientation = v_tags_sprite_orientation_list.Front;
                 }
-                else if (v_player_movement_setup.v_player_movement_key_list[tv_targetIndex] == v_player_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Right)
+            }
+            else if (v_player_movement_setup.v_player_movement_key_list[tv_targetIndex] == v_player_movement_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.Right)
+            {
+                if (v_player_sprite_setup.v_sprite_enabled)
                 {
-                    if (v_player_sprite_setup.v_sprite_enabled)
-                    {
-                        v_player_sprite_setup.v_sprite_state_profile = v_tags_sprite_profile_list.Right;
-                    }
+                    v_player_sprite_setup.v_sprite_state_profile = v_tags_sprite_profile_list.Right;
                 }
+            }
 
-                if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_default_sampler_gameobject_script.v_player_collider_default_sampler_pathing_current_collisions_list.Count == 0)
-                {
-                    if (v_player_movement_setup.v_player_movement_key_index_list_direction_gate)
-                    {
-                        if ((v_player_movement_setup.v_player_movement_key_index - 1) >= 0)
-                        {
-                            v_player_movement_setup.v_player_movement_key_index -= 1;
-                        }
-                    }
-                    else
-                    {
-                        if ((v_player_movement_setup.v_player_movement_key_index + 1) < v_player_movement_setup.v_player_movement_key_list.Count)
-                        {
-                            v_player_movement_setup.v_player_movement_key_index += 1;
-                        }
-                    }
-
-                    if (v_player_movement_setup.v_player_movement_key_index >= (v_player_movement_setup.v_player_movement_key_list.Count - 1))
-                    {
-                        v_player_movement_setup.v_player_movement_key_index_list_direction_gate = true;
-                    }
-                    else if (v_player_movement_setup.v_player_movement_key_index <= 0)
-                    {
-                        v_player_movement_setup.v_player_movement_key_index_list_direction_gate = false;
-                    }
-                }
-                else
+            if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_default_sampler_gameobject_script.v_player_collider_default_sampler_pathing_current_collisions_list.Count == 0)
+            {
+                if (v_player_movement_setup.v_player_movement_key_index_list_direction_gate)
                 {
                     if ((v_player_movement_setup.v_player_movement_key_index - 1) >= 0)
                     {
                         v_player_movement_setup.v_player_movement_key_index -= 1;
                     }
                 }
+                else
+                {
+                    if ((v_player_movement_setup.v_player_movement_key_index + 1) < v_player_movement_setup.v_player_movement_key_list.Count)
+                    {
+                        v_player_movement_setup.v_player_movement_key_index += 1;
+                    }
+                }
+
+                if (v_player_movement_setup.v_player_movement_key_index >= (v_player_movement_setup.v_player_movement_key_list.Count - 1))
+                {
+                    v_player_movement_setup.v_player_movement_key_index_list_direction_gate = true;
+                }
+                else if (v_player_movement_setup.v_player_movement_key_index <= 0)
+                {
+                    v_player_movement_setup.v_player_movement_key_index_list_direction_gate = false;
+                }
             }
             else
             {
-                v_player_movement_setup.v_player_movement_key_index = 0;
-                v_player_movement_setup.v_player_movement_key_index_list_direction_gate = false;
+                if ((v_player_movement_setup.v_player_movement_key_index - 1) >= 0)
+                {
+                    v_player_movement_setup.v_player_movement_key_index -= 1;
+                }
             }
+        }
+        else
+        {
+            v_player_movement_setup.v_player_movement_key_index = 0;
+            v_player_movement_setup.v_player_movement_key_index_list_direction_gate = false;
         }
 
         v_player_movement_setup.v_player_collider_object_distance = Vector3.Distance(transform.position, v_player_movement_setup.v_player_collider_object.transform.position);
@@ -219,7 +225,7 @@ public class s_player_handler : MonoBehaviour
         {
             if (v_player_movement_setup.v_player_collider_object_distance > v_player_movement_setup.v_player_collider_object_distance_sprite_threshold)
             {
-                if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_speed_setup.v_player_collider_movement_speed_toggle)
+                if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_speed_setup.v_player_collider_movement_speed_is_walking)
                 {
                     v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Walk;
                 }
@@ -228,50 +234,18 @@ public class s_player_handler : MonoBehaviour
                     v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Run;
                 }
             }
-        }
 
-        if ((v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_detected) && (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_detected_target.v_player_collider_dodge_target_distance > 0))
-        {
-            if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_last_direction == v_tags_entity_direction_list.Forward)
+            if ((v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_detected) && (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_detected_target.v_player_collider_movement_target_pathing))
             {
-                if (v_player_sprite_setup.v_sprite_enabled)
-                {
-                    v_player_sprite_setup.v_sprite_state_orientation = v_tags_sprite_orientation_list.Back;
-                }
-            }
-            else if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_last_direction == v_tags_entity_direction_list.Left)
-            {
-                if (v_player_sprite_setup.v_sprite_enabled)
-                {
-                    v_player_sprite_setup.v_sprite_state_profile = v_tags_sprite_profile_list.Left;
-                }
-            }
-            else if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_last_direction == v_tags_entity_direction_list.Backward)
-            {
-                if (v_player_sprite_setup.v_sprite_enabled)
-                {
-                    v_player_sprite_setup.v_sprite_state_orientation = v_tags_sprite_orientation_list.Front;
-                }
-            }
-            else if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_last_direction == v_tags_entity_direction_list.Right)
-            {
-                if (v_player_sprite_setup.v_sprite_enabled)
-                {
-                    v_player_sprite_setup.v_sprite_state_profile = v_tags_sprite_profile_list.Right;
-                }
-            }
-            
-            v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Dodge;
-            v_player_sprite_setup.v_player_sprite_caller_object_script.f_sprite_manually_rewind_to_first_frame();
-            if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_dodge_cooldown > 0)
-            {
+                v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Dodge;
+                v_player_sprite_setup.v_player_sprite_caller_object_script.f_sprite_manually_rewind_to_first_frame();
                 v_player_sight_collider_setup.v_player_sight_collider_direction_changed = true;
             }
-        }
-        else if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_cooldown_counter > 0)
-        {
-            v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Dodge;
-            v_player_sprite_setup.v_player_sprite_caller_object_script.f_sprite_manually_skip_to_last_frame();
+            else if ((!v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_detected) && (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_cooldown_counter > 0))
+            {
+                v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Dodge;
+                v_player_sprite_setup.v_player_sprite_caller_object_script.f_sprite_manually_skip_to_last_frame();
+            }
         }
     }
 
@@ -298,7 +272,7 @@ public class s_player_handler : MonoBehaviour
 
     public bool f_player_move_towards(Vector3 sv_target_position, float sv_timer_rate)
     {
-        float tv_determined_speed = (float)(v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_speed * 0.00001);
+        float tv_determined_speed = (float)(v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_target_speed * 0.00001);
         tv_determined_speed *= v_player_movement_setup.v_player_collider_object_follow_speed_multiplier;
         if (v_player_movement_setup.v_player_collider_object_distance > v_player_movement_setup.v_player_collider_object_distance_accuracy_threshold)
         {
@@ -354,7 +328,7 @@ public class s_player_handler : MonoBehaviour
 
     public void f_player_sight_collider_handler()
     {
-        if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_cooldown_counter > 0)
+        if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_dodge_sampler_cooldown_counter > 0)
         {
             if (v_player_sight_collider_setup.v_player_sight_collider_direction_changed)
             {
@@ -397,7 +371,7 @@ public class s_player_handler : MonoBehaviour
                 v_player_sight_collider_setup.v_player_sight_collider_object_last_direction = v_tags_entity_direction_list.Forward;
             }
         }
-        
+
         if (v_player_sight_collider_setup.v_player_sight_collider_object_last_direction.Equals(v_tags_entity_direction_list.Right))
         {
             v_player_sight_collider_setup.v_player_sight_collider_object.transform.localEulerAngles = Vector3.zero;

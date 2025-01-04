@@ -919,13 +919,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788118170}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1387899286}
-  m_Father: {fileID: 1449564070}
+  m_Father: {fileID: 1965473571}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &788118172
 BoxCollider:
@@ -946,8 +946,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.45, y: 1, z: 0.45}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 0.45, y: 1, z: 1.5}
+  m_Center: {x: 0, y: 0.5, z: -0.525}
 --- !u!54 &788118173
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -990,17 +990,11 @@ MonoBehaviour:
   v_player_collider_dodge_sampler_player_collider_gameobject: {fileID: 1449564065}
   v_player_collider_dodge_sampler_player_collider_gameobject_script: {fileID: 1449564069}
   v_player_collider_dodge_sampler_pathing_current_collisions_list: []
-  v_player_collider_dodge_sampler_pathing_distance_threshold: 0.75
-  v_player_collider_dodge_sampler_movement_setup:
-    v_player_collider_dodge_sampler_return_movement_speed: 0.12
-    v_player_collider_dodge_sampler_shoot_movement_speed: 5
-    v_player_collider_dodge_sampler_search_movement_speed: 0.27
-    v_player_collider_dodge_sampler_movement_detected_target: {x: 0, y: 0, z: 0}
-    v_player_collider_dodge_sampler_movement_intended_target: {x: 0, y: 0, z: 0}
-    v_player_collider_dodge_sampler_target_distance: 0
-    v_player_collider_dodge_sampler_max_distance_reached: 0
-    v_player_collider_dodge_sampler_pathing_detected: 0
-    v_player_collider_dodge_sampler_embed_detected_pathing: 0
+  v_player_collider_dodge_sampler_pathing_distance_threshold: 0.25
+  v_player_collider_dodge_sampler_embed_distance_threshold: 1.5
+  v_player_collider_dodge_sampler_pathing_search_setup:
+    v_player_collider_dodge_sampler_pathing_search_duration: 2
+    v_player_collider_dodge_sampler_pathing_search_duration_timer: 0
 --- !u!1 &800477347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,13 +1482,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960173824}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 852878623}
-  m_Father: {fileID: 1449564070}
+  m_Father: {fileID: 1965473571}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &960173826
 BoxCollider:
@@ -1559,17 +1553,7 @@ MonoBehaviour:
   v_player_collider_default_sampler_player_collider_gameobject: {fileID: 1449564065}
   v_player_collider_default_sampler_player_collider_gameobject_script: {fileID: 1449564069}
   v_player_collider_default_sampler_pathing_current_collisions_list: []
-  v_player_collider_default_sampler_movement_setup:
-    v_player_collider_default_sampler_return_run_movement_speed: 0.0325
-    v_player_collider_default_sampler_return_walk_movement_speed: 0.0175
-    v_player_collider_default_sampler_shoot_run_movement_speed: 3
-    v_player_collider_default_sampler_shoot_walk_movement_speed: 3
-    v_player_collider_default_sampler_change_direction_distance_threshold: 1.3
-    v_player_collider_default_sampler_movement_detected_target: {x: 0, y: 0, z: 0}
-    v_player_collider_default_sampler_movement_intended_target: {x: 0, y: 0, z: 0}
-    v_player_collider_default_sampler_target_distance: 0
-    v_player_collider_default_sampler_return_movement_speed: 0
-    v_player_collider_default_sampler_shoot_movement_speed: 0
+  v_player_collider_default_sampler_pathing_distance_threshold: 0
 --- !u!1 &1038541182
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,34 +2037,37 @@ MonoBehaviour:
     v_key_manager_gameobject: {fileID: 0}
     v_key_manager_gameobject_script: {fileID: 0}
   v_player_collider_movement_setup:
+    v_player_collider_movement_rod_gameobject: {fileID: 1965473570}
     v_player_collider_movement_default_sampler_gameobject: {fileID: 960173824}
     v_player_collider_movement_default_sampler_gameobject_script: {fileID: 960173828}
     v_player_collider_movement_dodge_sampler_gameobject: {fileID: 788118170}
     v_player_collider_movement_dodge_sampler_gameobject_script: {fileID: 788118174}
     v_player_collider_movement_mode: 2
-    v_player_collider_movement_step: 1
-    v_player_collider_movement_distance_threshold: 0.1
-    v_player_collider_dodge_step: 2
-    v_player_collider_dodge_distance_threshold: 0.1
-    v_player_collider_dodge_cooldown: 6
+    v_player_collider_movement_default_sampler_step: 0.75
+    v_player_collider_movement_default_distance_threshold: 0.25
+    v_player_collider_movement_dodge_sampler_step: 1.75
+    v_player_collider_movement_dodge_sampler_cooldown: 8
     v_player_collider_movement_speed_setup:
-      v_player_collider_movement_speed_toggle: 0
+      v_player_collider_movement_speed_is_walking: 0
       v_player_collider_movement_walking_speed: 100
       v_player_collider_movement_running_speed: 200
       v_player_collider_movement_dodging_speed: 800
-    v_player_collider_movement_detected_target:
+    v_player_collider_movement_default_detected_target:
       v_player_collider_movement_target_pathing: {fileID: 0}
       v_player_collider_movement_target_pathing_script: {fileID: 0}
       v_player_collider_movement_target_distance: 0
-      v_player_collider_dodge_target_distance: 0
+    v_player_collider_movement_dodge_detected_target:
+      v_player_collider_movement_target_pathing: {fileID: 0}
+      v_player_collider_movement_target_pathing_script: {fileID: 0}
+      v_player_collider_movement_target_distance: 0
     v_player_collider_movement_key_list: 
     v_player_collider_movement_key_index_list_direction_gate: 0
-    v_player_collider_movement_gate: 0
     v_player_collider_movement_key_index: 0
-    v_player_collider_movement_speed: 0
-    v_player_collider_last_direction: 0
-    v_player_collider_movement_dodge_detected: 0
-    v_player_collider_movement_dodge_cooldown_counter: 0
+    v_player_collider_movement_target_speed: 0
+    v_player_collider_movement_last_direction: 0
+    v_player_collider_movement_dodge_sampler_detected: 0
+    v_player_collider_movement_dodge_sampler_embedding_allowed: 0
+    v_player_collider_movement_dodge_sampler_cooldown_counter: 0
   v_player_collider_debug_render_setup:
     v_debug_manager_gameobject_name: entity_debug_manager
     v_debug_gameobjects_list:
@@ -2103,8 +2090,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2086147063}
-  - {fileID: 960173825}
-  - {fileID: 788118171}
+  - {fileID: 1965473571}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1449564071
@@ -2892,6 +2878,39 @@ MonoBehaviour:
     v_enable_parent: 0
     v_enable_parent_root: 1
     v_available_parent: {fileID: 0}
+--- !u!1 &1965473570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1965473571}
+  m_Layer: 0
+  m_Name: subentity_player_collider_rod
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1965473571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965473570}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 960173825}
+  - {fileID: 788118171}
+  m_Father: {fileID: 1449564070}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1987387920
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2636769628183802895
+--- !u!1 &4805835882428678102
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6099931905997627570}
-  - component: {fileID: 8215078548965511017}
+  - component: {fileID: 1800775835876607812}
+  - component: {fileID: 4424523689891728047}
   m_Layer: 0
-  m_Name: spriter_sophi_bloody_dodge_3_back
+  m_Name: spriter_area_ambient_darkness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6099931905997627570
+--- !u!4 &1800775835876607812
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2636769628183802895}
+  m_GameObject: {fileID: 4805835882428678102}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.53729963, y: -0, z: -0, w: -0.8433914}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -9.5, y: 3, z: 1}
+  m_LocalScale: {x: 5, y: 2, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4271063879526163454}
+  - {fileID: 6269331118674952786}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 295, y: 0, z: 0}
---- !u!114 &8215078548965511017
+  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
+--- !u!114 &4424523689891728047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2636769628183802895}
+  m_GameObject: {fileID: 4805835882428678102}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27ebc7e37c0805b40859a04e9872dd20, type: 3}
@@ -49,17 +49,16 @@ MonoBehaviour:
     v_time_handler_gameobject_name: entity_time_handler
     v_time_handler_gameobject: {fileID: 0}
     v_time_handler_script: {fileID: 0}
-    v_time_handler_level: 0
+    v_time_handler_level: 4
   v_sprite_frame_setup:
     v_frame_play: 1
-    v_frame_loops: 1
-    v_frame_profile_inversion: 1
-    v_frame_scale: 0.3
-    v_sprite_renderer: {fileID: 8533495111532738514}
-    v_sprite_renderer_material: {fileID: 2100000, guid: d4e5c3ce251d60847b75ab8638d95549, type: 2}
+    v_frame_loops: 0
+    v_frame_profile_inversion: 0
+    v_frame_scale: 1
+    v_sprite_renderer: {fileID: 7261573260231844377}
+    v_sprite_renderer_material: {fileID: 0}
     v_frame_list:
-    - {fileID: 21300000, guid: 9a01c5833a2f36d408a80b40d66b9afc, type: 3}
-    - {fileID: 21300000, guid: f4297205e1bea3f41b0667b03e9a1e40, type: 3}
+    - {fileID: 21300000, guid: f4154ad199673ed4e85df25f60fcc930, type: 3}
     v_frame_counter: 0
     v_frame_counter_stay_timer: 0
     v_frame_counter_stay_timer_randomized_gate: 0
@@ -67,13 +66,13 @@ MonoBehaviour:
     v_timer_stay_bool_frame_move_gate: 0
     v_frame_sprite_profile: 0
   v_sprite_alpha_setup:
-    v_sprite_alpha_global: 1
-    v_sprite_alpha_update_on_timer: 1
-    v_sprite_alpha_target: 1
-    v_sprite_alpha_target_max: 1
+    v_sprite_alpha_global: 0
+    v_sprite_alpha_update_on_timer: 0
+    v_sprite_alpha_target: 0.45
+    v_sprite_alpha_target_max: 0.45
     v_sprite_alpha_target_min: 0
-    v_sprite_alpha_increment: 0.05
-    v_sprite_alpha: 0
+    v_sprite_alpha_increment: 0.01
+    v_sprite_alpha: 0.45
     v_sprite_alpha_bool_frame_move_check: 0
   v_sprite_float_up_setup:
     v_sprite_float_up_enabled: 0
@@ -107,41 +106,12 @@ MonoBehaviour:
     v_timer_stay_forever: 1
     v_sprite_alpha_setup:
       v_sprite_alpha_local: 0
-      v_sprite_alpha_skip: 1
+      v_sprite_alpha_skip: 0
       v_sprite_alpha_local_update_on_timer: 0
-      v_sprite_alpha_target: 1
-      v_sprite_alpha_target_max: 1
+      v_sprite_alpha_target: 0
+      v_sprite_alpha_target_max: 0
       v_sprite_alpha_target_min: 0
-      v_sprite_alpha_increment: 0.01
-    v_sprite_float_up_setup:
-      v_sprite_float_up_local: 0
-      v_sprite_float_up_skip: 1
-      v_sprite_float_up_auto_change_direction: 0
-      v_sprite_float_up_rely_on_frame_change_for_direction_change: 0
-      v_sprite_float_up_distance_threshold: 0
-      v_sprite_float_up_target_distance: 0
-      v_sprite_float_up_randomize_distance: 0
-      v_sprite_float_up_target_distance_max: 0
-      v_sprite_float_up_target_origin: 0
-      v_sprite_float_up_randomize_origin: 0
-      v_sprite_float_up_target_origin_max: 0
-      v_sprite_float_up_target_smoothness: 0
-      v_sprite_float_up_randomize_smoothness: 0
-      v_sprite_float_up_target_smoothness_max: 0
-      v_sprite_float_direction_is_down_bool: 0
-      v_sprite_float_up_bool_direction_change_check: 0
-  - v_timer_stay: 1
-    v_timer_stay_randomized: 0
-    v_timer_stay_randomized_max: 0
-    v_timer_stay_forever: 1
-    v_sprite_alpha_setup:
-      v_sprite_alpha_local: 0
-      v_sprite_alpha_skip: 1
-      v_sprite_alpha_local_update_on_timer: 0
-      v_sprite_alpha_target: 1
-      v_sprite_alpha_target_max: 1
-      v_sprite_alpha_target_min: 0
-      v_sprite_alpha_increment: 0.01
+      v_sprite_alpha_increment: 0
     v_sprite_float_up_setup:
       v_sprite_float_up_local: 0
       v_sprite_float_up_skip: 1
@@ -161,10 +131,10 @@ MonoBehaviour:
       v_sprite_float_up_bool_direction_change_check: 0
   v_sprite_sort_setup:
     v_sort_modifier: 1000
-    v_enable_parent: 1
+    v_enable_parent: 0
     v_enable_parent_root: 1
     v_available_parent: {fileID: 0}
---- !u!1 &6318872716622157301
+--- !u!1 &7017946560552310841
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,8 +142,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4271063879526163454}
-  - component: {fileID: 8533495111532738514}
+  - component: {fileID: 6269331118674952786}
+  - component: {fileID: 7261573260231844377}
   m_Layer: 0
   m_Name: subentity_sprite
   m_TagString: Untagged
@@ -181,28 +151,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4271063879526163454
+--- !u!4 &6269331118674952786
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6318872716622157301}
+  m_GameObject: {fileID: 7017946560552310841}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 6099931905997627570}
+  m_Father: {fileID: 1800775835876607812}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8533495111532738514
+--- !u!212 &7261573260231844377
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6318872716622157301}
+  m_GameObject: {fileID: 7017946560552310841}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -234,17 +204,17 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1729399983
-  m_SortingLayer: 9
+  m_SortingLayerID: -1016518665
+  m_SortingLayer: 13
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f4154ad199673ed4e85df25f60fcc930, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.4509804}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 40.96, y: 40.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1

@@ -21,7 +21,7 @@ public class svl_player_collider_gameobject_dictate_element
 {
     [Header("Player Speed")]
     [SerializeField] public bool v_speed_dictate;
-    [SerializeField] public bool v_player_collider_movement_speed_toggle;
+    [SerializeField] public bool v_player_collider_movement_speed_is_walking;
 }
 
 [Serializable]
@@ -112,7 +112,7 @@ public class s_scene_dictator : MonoBehaviour
     {
         if (v_player_dictator_setup.v_player_collider_gameobject_dictate_element.v_speed_dictate)
         {
-            v_player_dictator_setup.v_player_collider_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_speed_setup.v_player_collider_movement_speed_toggle = v_player_dictator_setup.v_player_collider_gameobject_dictate_element.v_player_collider_movement_speed_toggle;
+            v_player_dictator_setup.v_player_collider_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_speed_setup.v_player_collider_movement_speed_is_walking = v_player_dictator_setup.v_player_collider_gameobject_dictate_element.v_player_collider_movement_speed_is_walking;
         }
     }
 }

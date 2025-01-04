@@ -238,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936737306644471775, guid: a0bdcb85f2cbcfa41a267d28dbca5abe, type: 3}
       propertyPath: v_pathing_scene_changer_setup.v_pathing_scene_changer_target
-      value: sc_tutorial_hallway_from_courtyard
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7936737306644471775, guid: a0bdcb85f2cbcfa41a267d28dbca5abe, type: 3}
       propertyPath: v_pathing_scene_changer_setup.v_pathing_scene_changer_enabled
@@ -382,7 +382,7 @@ MonoBehaviour:
       v_sprite_state_profile: 0
     v_player_collider_gameobject_dictate_element:
       v_speed_dictate: 1
-      v_player_collider_movement_speed_toggle: 0
+      v_player_collider_movement_speed_is_walking: 0
     v_player_gameobject: {fileID: 0}
     v_player_gameobject_script: {fileID: 0}
     v_player_collider_gameobject: {fileID: 0}

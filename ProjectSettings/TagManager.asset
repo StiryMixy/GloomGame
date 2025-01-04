@@ -80,3 +80,6 @@ TagManager:
   - name: ForegroundEffects
     uniqueID: 3936859185
     locked: 0
+  - name: AmbientDarkness
+    uniqueID: 3278448631
+    locked: 0
