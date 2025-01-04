@@ -237,6 +237,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7936737306644471775, guid: a0bdcb85f2cbcfa41a267d28dbca5abe, type: 3}
+      propertyPath: v_pathing_scene_changer_setup.v_pathing_scene_changer_target
+      value: sc_tutorial_hallway_from_courtyard
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936737306644471775, guid: a0bdcb85f2cbcfa41a267d28dbca5abe, type: 3}
       propertyPath: v_pathing_scene_changer_setup.v_pathing_scene_changer_enabled
       value: 1
       objectReference: {fileID: 0}
@@ -775,7 +779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936737306644471775, guid: a0bdcb85f2cbcfa41a267d28dbca5abe, type: 3}
       propertyPath: v_pathing_scene_changer_setup.v_pathing_scene_changer_target
-      value: sc_tutorial_courtyard
+      value: sc_tutorial_courtyard_start
       objectReference: {fileID: 0}
     - target: {fileID: 7936737306644471775, guid: a0bdcb85f2cbcfa41a267d28dbca5abe, type: 3}
       propertyPath: v_pathing_scene_changer_setup.v_pathing_scene_changer_enabled

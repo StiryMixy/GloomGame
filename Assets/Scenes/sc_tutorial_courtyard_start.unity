@@ -2805,7 +2805,7 @@ GameObject:
   m_Component:
   - component: {fileID: 260904538}
   m_Layer: 0
-  m_Name: entities_hermarkers_5
+  m_Name: entities_hermarkers_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3539,7 +3539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 388510139}
   m_Layer: 0
-  m_Name: entities_trees_2
+  m_Name: entities_trees_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9628,7 +9628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 926348120}
   m_Layer: 0
-  m_Name: entities_rubble_4
+  m_Name: entities_rubble_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9895,6 +9895,14 @@ PrefabInstance:
     - target: {fileID: 6765162247835717615, guid: a0bdcb85f2cbcfa41a267d28dbca5abe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936737306644471775, guid: a0bdcb85f2cbcfa41a267d28dbca5abe, type: 3}
+      propertyPath: v_pathing_scene_changer_setup.v_pathing_scene_changer_target
+      value: sc_tutorial_hallway_from_courtyard
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936737306644471775, guid: a0bdcb85f2cbcfa41a267d28dbca5abe, type: 3}
+      propertyPath: v_pathing_scene_changer_setup.v_pathing_scene_changer_enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12853,7 +12861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1199033138}
   m_Layer: 0
-  m_Name: entities_foliage_3
+  m_Name: entities_foliage_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20137,7 +20145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1848353055}
   m_Layer: 0
-  m_Name: entities_doors_1
+  m_Name: entities_doors_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

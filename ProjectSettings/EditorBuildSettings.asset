@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/sc_starter_screen.unity
     guid: 3be77e84ead6ba24e8929305fdd71d8b
   - enabled: 1
-    path: Assets/Scenes/sc_tutorial_courtyard.unity
+    path: Assets/Scenes/sc_tutorial_courtyard_start.unity
     guid: 147ac781cded88d4887b359ed0193a04
   - enabled: 1
     path: Assets/Scenes/sc_tutorial_hallway_from_courtyard.unity

@@ -5523,6 +5523,7 @@ MonoBehaviour:
   v_player_sight_collider_setup:
     v_player_sight_collider_object: {fileID: 2025033340}
     v_player_sight_collider_object_last_direction: 0
+    v_player_sight_collider_direction_changed: 0
   v_player_debug_render_setup:
     v_debug_manager_gameobject_name: entity_debug_manager
     v_debug_gameobjects_list:
