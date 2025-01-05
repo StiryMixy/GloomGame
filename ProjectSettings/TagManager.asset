@@ -14,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - SpriteLighting
   - 
   - 
   - 
@@ -82,4 +82,10 @@ TagManager:
     locked: 0
   - name: AmbientDarkness
     uniqueID: 3278448631
+    locked: 0
+  - name: AmbientLighting
+    uniqueID: 4058516759
+    locked: 0
+  - name: Topmost
+    uniqueID: 2566365061
     locked: 0
