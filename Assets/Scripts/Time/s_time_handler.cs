@@ -16,6 +16,16 @@ public class svgl_time_handler
 }
 
 [Serializable]
+public class svgl_time_caller
+{
+    [Header("Configurable Variables")]
+    [SerializeField] public string v_time_handler_gameobject_name;
+    [Header("Reference Variables")]
+    [SerializeField] public GameObject v_time_handler_gameobject;
+    [SerializeField] public s_time_handler v_time_handler_script;
+}
+
+[Serializable]
 public class svl_time_handler_list_element
 {
     [Header("Configurable Variables")]
@@ -43,6 +53,9 @@ public class s_time_handler : MonoBehaviour
 
     [Header("Time Handler Level Type Setup")]
     public List<v_tags_timer_level_list> v_tags_timer_level_list = new List<v_tags_timer_level_list>();
+
+    [Header("Time Stop Handler Setup")]
+    public bool v_time_is_stopped = false;
 
     void Update()
     {
@@ -137,7 +150,10 @@ public class s_time_handler : MonoBehaviour
         svl_time_handler_list_element tv_reference_index = v_time_handler_list_setup[sv_time_level_index];
         if (tv_reference_index.v_timer_enabled)
         {
-            tv_reference_index.v_timer += (Time.deltaTime * tv_reference_index.v_timer_rate);
+            if (!v_time_is_stopped)
+            {
+                tv_reference_index.v_timer += (Time.deltaTime * tv_reference_index.v_timer_rate);
+            }
 
             if ((int)tv_reference_index.v_timer != tv_reference_index.v_timer_precise)
             {

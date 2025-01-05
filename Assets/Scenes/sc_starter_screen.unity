@@ -364,6 +364,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311ab39750b70564381bf4b101195e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  v_time_handler_dictator_setup:
+    v_time_handler_gameobject_name: entity_time_handler
+    v_time_handler_gameobject_dictate_element:
+      v_time_handler_gameobject_dictate: 1
+      v_time_is_stopped: 0
+    v_time_handler_gameobject: {fileID: 0}
+    v_time_handler_script: {fileID: 0}
   v_camera_dictator_setup:
     v_camera_gameobject_name: entity_camera
     v_camera_gameobject_dictate_element:

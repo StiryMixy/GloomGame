@@ -5,6 +5,25 @@ using UnityEngine;
 using static s_tag_library;
 
 [Serializable]
+public class svl_time_handler_gameobject_dictate_element
+{
+    [Header("Player Sprite Entity")]
+    [SerializeField] public bool v_time_handler_gameobject_dictate;
+    [SerializeField] public bool v_time_is_stopped;
+}
+
+[Serializable]
+public class svl_time_caller
+{
+    [Header("Configurable Variables")]
+    [SerializeField] public string v_time_handler_gameobject_name;
+    [SerializeField] public svl_time_handler_gameobject_dictate_element v_time_handler_gameobject_dictate_element = new svl_time_handler_gameobject_dictate_element();
+    [Header("Reference Variables")]
+    [SerializeField] public GameObject v_time_handler_gameobject;
+    [SerializeField] public s_time_handler v_time_handler_script;
+}
+
+[Serializable]
 public class svl_player_gameobject_dictate_element
 {
     [Header("Player Sprite Entity")]
@@ -61,6 +80,9 @@ public class svl_camera_dictator
 
 public class s_scene_dictator : MonoBehaviour
 {
+    [Header("Time Handler Dictator Setup")]
+    [SerializeField] public svl_time_caller v_time_handler_dictator_setup = new svl_time_caller();
+
     [Header("Camera Dictator Setup")]
     [SerializeField] public svl_camera_dictator v_camera_dictator_setup = new svl_camera_dictator();
 
@@ -70,6 +92,7 @@ public class s_scene_dictator : MonoBehaviour
     void Start()
     {
         f_scene_dictator_gameobject_finder();
+        f_time_handler_dictate();
         f_camera_dictate();
         f_player_dictate();
         f_player_collider_dictate();
@@ -77,6 +100,9 @@ public class s_scene_dictator : MonoBehaviour
 
     public void f_scene_dictator_gameobject_finder()
     {
+        v_time_handler_dictator_setup.v_time_handler_gameobject = GameObject.Find(v_time_handler_dictator_setup.v_time_handler_gameobject_name);
+        v_time_handler_dictator_setup.v_time_handler_script = v_time_handler_dictator_setup.v_time_handler_gameobject.GetComponent<s_time_handler>();
+
         v_camera_dictator_setup.v_camera_gameobject = GameObject.Find(v_camera_dictator_setup.v_camera_gameobject_name);
         v_camera_dictator_setup.v_camera_gameobject_script = v_camera_dictator_setup.v_camera_gameobject.GetComponent<s_camera>();
 
@@ -85,6 +111,14 @@ public class s_scene_dictator : MonoBehaviour
 
         v_player_dictator_setup.v_player_collider_gameobject = GameObject.Find(v_player_dictator_setup.v_player_collider_gameobject_name);
         v_player_dictator_setup.v_player_collider_gameobject_script = v_player_dictator_setup.v_player_collider_gameobject.GetComponent<s_player_collider_controller>();
+    }
+
+    public void f_time_handler_dictate()
+    {
+        if (v_time_handler_dictator_setup.v_time_handler_gameobject_dictate_element.v_time_handler_gameobject_dictate)
+        {
+            v_time_handler_dictator_setup.v_time_handler_script.v_time_is_stopped = v_time_handler_dictator_setup.v_time_handler_gameobject_dictate_element.v_time_is_stopped;
+        }
     }
 
     public void f_camera_dictate()

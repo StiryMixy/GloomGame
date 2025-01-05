@@ -4280,6 +4280,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd6ecb59d073e842a9d81659a4d3bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  v_sprite_time_caller_setup:
+    v_time_handler_gameobject_name: entity_time_handler
+    v_time_handler_gameobject: {fileID: 0}
+    v_time_handler_script: {fileID: 0}
   v_camera_key_manager_gameobject_setup:
     v_key_manager_gameobject_name: entity_key_manager
     v_key_manager_gameobject: {fileID: 0}
@@ -5697,6 +5701,7 @@ MonoBehaviour:
     v_timer_gate: 0
     v_timer_gate_counter: 0
   v_tags_timer_level_list: 000000000100000002000000030000000400000005000000
+  v_time_is_stopped: 0
 --- !u!114 &8780141619676962241
 MonoBehaviour:
   m_ObjectHideFlags: 0
