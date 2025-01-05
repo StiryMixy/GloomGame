@@ -89,3 +89,6 @@ TagManager:
   - name: Topmost
     uniqueID: 2566365061
     locked: 0
+  - name: CameraCurtain
+    uniqueID: 1896086553
+    locked: 0

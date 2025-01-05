@@ -1065,8 +1065,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -358108111
-  m_SortingLayer: 12
+  m_SortingLayerID: 1896086553
+  m_SortingLayer: 16
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2042,7 +2042,7 @@ MonoBehaviour:
     v_player_collider_movement_default_sampler_gameobject_script: {fileID: 960173828}
     v_player_collider_movement_dodge_sampler_gameobject: {fileID: 788118170}
     v_player_collider_movement_dodge_sampler_gameobject_script: {fileID: 788118174}
-    v_player_collider_movement_mode: 2
+    v_player_collider_movement_mode: 0
     v_player_collider_movement_default_sampler_step: 0.75
     v_player_collider_movement_default_distance_threshold: 0.25
     v_player_collider_movement_dodge_sampler_step: 1.75
