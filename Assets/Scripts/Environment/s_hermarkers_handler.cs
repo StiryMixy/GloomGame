@@ -26,6 +26,7 @@ public class svl_hermarkers_sprite_handler
 public class svl_hermarkers_collision_handler
 {
     [Header("Configurable Variables")]
+    [SerializeField] public string v_hermarkers_detected_player_entity_gameobject_name;
     [SerializeField] public float v_hermarkers_detected_player_entity_threshold;
     [Header("Reference Variables")]
     [SerializeField] public bool v_hermarkers_detected_player_entity;
@@ -111,7 +112,7 @@ public class s_hermarkers_handler : MonoBehaviour
         v_hermarkers_time_handler_setup.v_time_handler_gameobject = GameObject.Find(v_hermarkers_time_handler_setup.v_time_handler_gameobject_name);
         v_hermarkers_time_handler_setup.v_time_handler_script = v_hermarkers_time_handler_setup.v_time_handler_gameobject.GetComponent<s_time_handler>();
 
-        v_hermarkers_collision_handler_setup.v_hermarkers_detected_player_entity_gameobject = GameObject.Find("entity_player");
+        v_hermarkers_collision_handler_setup.v_hermarkers_detected_player_entity_gameobject = GameObject.Find(v_hermarkers_collision_handler_setup.v_hermarkers_detected_player_entity_gameobject_name);
 
         v_hermarkers_sprite_handler_setup.v_hermarkers_idle_sprite_gameobject_script = v_hermarkers_sprite_handler_setup.v_hermarkers_idle_sprite_gameobject.GetComponent<s_sprite_handler>();
         v_hermarkers_sprite_handler_setup.v_hermarkers_death_sprite_gameobject_script = v_hermarkers_sprite_handler_setup.v_hermarkers_death_sprite_gameobject.GetComponent<s_sprite_handler>();

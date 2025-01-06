@@ -251,6 +251,7 @@ MonoBehaviour:
     v_hermarkers_birth_sprite_gameobject_script: {fileID: 0}
     v_hermarkers_detected_player_entity: 0
   v_hermarkers_collision_handler_setup:
+    v_hermarkers_detected_player_entity_gameobject_name: entity_player
     v_hermarkers_detected_player_entity_threshold: 7
     v_hermarkers_detected_player_entity: 0
     v_hermarkers_detected_player_entity_gameobject: {fileID: 0}

@@ -31,6 +31,17 @@ public class svl_pathing_scene_changer
     [SerializeField] public string v_pathing_scene_changer_target;
 }
 
+[Serializable]
+public class svl_pathing_player_collider_reader
+{
+    [Header("Configurable Variables")]
+    [SerializeField] public string v_pathing_player_collider_entity_gameobject_name;
+    [SerializeField] public bool v_pathing_player_collider_will_decide_sprite;
+    [Header("Reference Variables")]
+    [SerializeField] public GameObject v_pathing_player_collider_entity_gameobject;
+    [SerializeField] public s_player_collider_controller v_pathing_player_collider_entity_gameobject_script;
+}
+
 public class s_pathing : MonoBehaviour
 {
     [Header("Pathing Key Manager Object Setup")]
@@ -41,6 +52,9 @@ public class s_pathing : MonoBehaviour
 
     [Header("Pathing Type Setup")]
     [SerializeField] public svl_pathing_type v_pathing_type_setup = new svl_pathing_type();
+
+    [Header("Pathing Player Collider Reader Setup")]
+    [SerializeField] public svl_pathing_player_collider_reader v_pathing_player_collider_reader_setup = new svl_pathing_player_collider_reader();
 
     [Header("Pathing Scene Changer Setup")]
     [SerializeField] public svl_pathing_scene_changer v_pathing_scene_changer_setup = new svl_pathing_scene_changer();
@@ -65,7 +79,55 @@ public class s_pathing : MonoBehaviour
         {
             v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_global = true;
             v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_update_on_timer = false;
-            v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_max;
+
+            if (v_pathing_player_collider_reader_setup.v_pathing_player_collider_will_decide_sprite)
+            {
+                if (v_pathing_player_collider_reader_setup.v_pathing_player_collider_entity_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_mode.Equals(v_tags_movement_mode_list.Walking))
+                {
+                    if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.Walking))
+                    {
+                        v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_max;
+                    }
+                    else
+                    {
+                        v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_min;
+                    }
+                }
+                else if (v_pathing_player_collider_reader_setup.v_pathing_player_collider_entity_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_mode.Equals(v_tags_movement_mode_list.Flying))
+                {
+                    if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.Flying))
+                    {
+                        v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_max;
+                    }
+                    else
+                    {
+                        v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_min;
+                    }
+                }
+                else if (v_pathing_player_collider_reader_setup.v_pathing_player_collider_entity_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_mode.Equals(v_tags_movement_mode_list.WalkingAndFlying))
+                {
+                    if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.Walking))
+                    {
+                        v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_max;
+                    }
+                    else if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.Flying))
+                    {
+                        v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_max;
+                    }
+                    else
+                    {
+                        v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_min;
+                    }
+                }
+                else
+                {
+                    v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_min;
+                }
+            }
+            else
+            {
+                v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target = v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha_target_max;
+            }
         }
         else
         {
@@ -128,6 +190,9 @@ public class s_pathing : MonoBehaviour
         v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject = GameObject.Find(v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject_name);
         v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject_script = v_pathing_key_manager_gameobject_setup.v_key_manager_gameobject.GetComponent<s_key_manager>();
 
+        v_pathing_player_collider_reader_setup.v_pathing_player_collider_entity_gameobject = GameObject.Find(v_pathing_player_collider_reader_setup.v_pathing_player_collider_entity_gameobject_name);
+        v_pathing_player_collider_reader_setup.v_pathing_player_collider_entity_gameobject_script = v_pathing_player_collider_reader_setup.v_pathing_player_collider_entity_gameobject.GetComponent<s_player_collider_controller>();
+
         v_pathing_debug_render_setup.v_debug_manager_gameobject = GameObject.Find(v_pathing_debug_render_setup.v_debug_manager_gameobject_name);
         v_pathing_debug_render_setup.v_debug_manager_gameobject_script = v_pathing_debug_render_setup.v_debug_manager_gameobject.GetComponent<s_debug_controller>();
     }
@@ -164,21 +229,28 @@ public class s_pathing : MonoBehaviour
 
     public void f_pathing_frame_counter_dictator(int sv_walking_and_flying_frame, int sv_flying_frame, int sv_walking_frame, int sv_null_frame)
     {
-        if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.WalkingAndFlying))
-        {
-            v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = sv_walking_and_flying_frame;
-        }
-        else if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.Flying))
-        {
-            v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = sv_flying_frame;
-        }
-        else if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.Walking))
+        if (v_pathing_player_collider_reader_setup.v_pathing_player_collider_will_decide_sprite)
         {
             v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = sv_walking_frame;
         }
         else
         {
-            v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = sv_null_frame;
+            if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.WalkingAndFlying))
+            {
+                v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = sv_walking_and_flying_frame;
+            }
+            else if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.Flying))
+            {
+                v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = sv_flying_frame;
+            }
+            else if (v_pathing_type_setup.v_pathing_type.Equals(v_tags_movement_mode_list.Walking))
+            {
+                v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = sv_walking_frame;
+            }
+            else
+            {
+                v_pathing_render_setup.v_sprite_handler_gameobject_script.v_sprite_frame_setup.v_frame_counter = sv_null_frame;
+            }
         }
     }
 }
