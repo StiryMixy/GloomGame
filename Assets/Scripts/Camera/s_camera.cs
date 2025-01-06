@@ -56,6 +56,9 @@ public class s_camera : MonoBehaviour
     [Header("Key Manager Game Object Setup")]
     [SerializeField] public svgl_key_manager v_camera_key_manager_gameobject_setup = new svgl_key_manager();
 
+    [Header("UI Handler Caller Setup")]
+    [SerializeField] public svl_ui_caller v_ui_handler_setup = new svl_ui_caller();
+
     [Header("Camera Game Object Setup")]
     [SerializeField] public svl_camera_actualcamera v_camera_actualcamera_gameobject_setup = new svl_camera_actualcamera();
 
@@ -126,6 +129,9 @@ public class s_camera : MonoBehaviour
     {
         v_sprite_time_caller_setup.v_time_handler_gameobject = GameObject.Find(v_sprite_time_caller_setup.v_time_handler_gameobject_name);
         v_sprite_time_caller_setup.v_time_handler_script = v_sprite_time_caller_setup.v_time_handler_gameobject.GetComponent<s_time_handler>();
+
+        v_ui_handler_setup.v_ui_gameobject = GameObject.Find(v_ui_handler_setup.v_ui_gameobject_name);
+        v_ui_handler_setup.v_ui_gameobject_script = v_ui_handler_setup.v_ui_gameobject.GetComponent<s_ui_handler>();
 
         v_camera_focus_setup.v_focus_gameobject = GameObject.Find(v_camera_focus_setup.v_focus_gameobject_name);
 
@@ -216,5 +222,6 @@ public class s_camera : MonoBehaviour
     {
         v_camera_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.v_player_movement_enabled = sv_target_state;
         v_sprite_time_caller_setup.v_time_handler_script.v_time_is_stopped = !sv_target_state;
+        v_ui_handler_setup.v_ui_gameobject_script.v_player_hud_setup.v_player_hud_is_visible = sv_target_state;
     }
 }

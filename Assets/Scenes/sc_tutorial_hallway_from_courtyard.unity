@@ -19510,6 +19510,13 @@ MonoBehaviour:
     v_player_gameobject_script: {fileID: 0}
     v_player_collider_gameobject: {fileID: 0}
     v_player_collider_gameobject_script: {fileID: 0}
+  v_ui_dictator_setup:
+    v_ui_gameobject_name: entity_ui_canvas
+    v_ui_gameobject_dictate_element:
+      v_ui_visibility_dictate: 1
+      v_player_hud_is_visible: 1
+    v_ui_gameobject: {fileID: 0}
+    v_ui_gameobject_script: {fileID: 0}
 --- !u!4 &2133882677
 Transform:
   m_ObjectHideFlags: 0

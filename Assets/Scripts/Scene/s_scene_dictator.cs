@@ -78,6 +78,25 @@ public class svl_camera_dictator
     [SerializeField] public s_camera v_camera_gameobject_script;
 }
 
+[Serializable]
+public class svl_ui_gameobject_dictate_element
+{
+    [Header("UI Player Hud Visibility")]
+    [SerializeField] public bool v_ui_visibility_dictate;
+    [SerializeField] public bool v_player_hud_is_visible;
+}
+
+[Serializable]
+public class svl_ui_dictator
+{
+    [Header("Configurable Variables")]
+    [SerializeField] public string v_ui_gameobject_name;
+    [SerializeField] public svl_ui_gameobject_dictate_element v_ui_gameobject_dictate_element = new svl_ui_gameobject_dictate_element();
+    [Header("Reference Variables")]
+    [SerializeField] public GameObject v_ui_gameobject;
+    [SerializeField] public s_ui_handler v_ui_gameobject_script;
+}
+
 public class s_scene_dictator : MonoBehaviour
 {
     [Header("Time Handler Dictator Setup")]
@@ -89,6 +108,9 @@ public class s_scene_dictator : MonoBehaviour
     [Header("Player Dictator Setup")]
     [SerializeField] public svl_player_dictator v_player_dictator_setup = new svl_player_dictator();
 
+    [Header("UI Dictator Setup")]
+    [SerializeField] public svl_ui_dictator v_ui_dictator_setup = new svl_ui_dictator();
+
     void Start()
     {
         f_scene_dictator_gameobject_finder();
@@ -96,6 +118,7 @@ public class s_scene_dictator : MonoBehaviour
         f_camera_dictate();
         f_player_dictate();
         f_player_collider_dictate();
+        f_ui_dictate();
     }
 
     public void f_scene_dictator_gameobject_finder()
@@ -111,6 +134,9 @@ public class s_scene_dictator : MonoBehaviour
 
         v_player_dictator_setup.v_player_collider_gameobject = GameObject.Find(v_player_dictator_setup.v_player_collider_gameobject_name);
         v_player_dictator_setup.v_player_collider_gameobject_script = v_player_dictator_setup.v_player_collider_gameobject.GetComponent<s_player_collider_controller>();
+
+        v_ui_dictator_setup.v_ui_gameobject = GameObject.Find(v_ui_dictator_setup.v_ui_gameobject_name);
+        v_ui_dictator_setup.v_ui_gameobject_script = v_ui_dictator_setup.v_ui_gameobject.GetComponent<s_ui_handler>();
     }
 
     public void f_time_handler_dictate()
@@ -147,6 +173,14 @@ public class s_scene_dictator : MonoBehaviour
         if (v_player_dictator_setup.v_player_collider_gameobject_dictate_element.v_speed_dictate)
         {
             v_player_dictator_setup.v_player_collider_gameobject_script.v_player_collider_movement_setup.v_player_collider_movement_speed_setup.v_player_collider_movement_speed_is_walking = v_player_dictator_setup.v_player_collider_gameobject_dictate_element.v_player_collider_movement_speed_is_walking;
+        }
+    }
+
+    public void f_ui_dictate()
+    {
+        if (v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_ui_visibility_dictate)
+        {
+            v_ui_dictator_setup.v_ui_gameobject_script.v_player_hud_setup.v_player_hud_is_visible = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_player_hud_is_visible;
         }
     }
 }
