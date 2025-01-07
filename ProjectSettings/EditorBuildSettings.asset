@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/sc_starter_screen.unity
     guid: 3be77e84ead6ba24e8929305fdd71d8b
   - enabled: 1
+    path: Assets/Scenes/sc_tutorial_courtyard_start_cutscene.unity
+    guid: d67616dda3d8bac4f829ee93611bacc3
+  - enabled: 1
     path: Assets/Scenes/sc_tutorial_courtyard_start.unity
     guid: 147ac781cded88d4887b359ed0193a04
   - enabled: 1

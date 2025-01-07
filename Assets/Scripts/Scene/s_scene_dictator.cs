@@ -7,7 +7,7 @@ using static s_tag_library;
 [Serializable]
 public class svl_time_handler_gameobject_dictate_element
 {
-    [Header("Player Sprite Entity")]
+    [Header("Time Stopper")]
     [SerializeField] public bool v_time_handler_gameobject_dictate;
     [SerializeField] public bool v_time_is_stopped;
 }
@@ -62,9 +62,12 @@ public class svl_player_dictator
 [Serializable]
 public class svl_camera_gameobject_dictate_element
 {
-    [Header("Player Sprite Entity")]
-    [SerializeField] public bool v_camera_black_fade_dictate;
+    [Header("Camera Black Fade Alpha Target")]
+    [SerializeField] public bool v_camera_black_fade_target_dictate;
     [Range(0.0f, 1.0f)][SerializeField] public float v_camera_black_fade_target = 1.0f;
+    [Header("Camera Black Fade Alpha")]
+    [SerializeField] public bool v_camera_black_fade_alpha_dictate;
+    [Range(0.0f, 1.0f)][SerializeField] public float v_sprite_alpha = 0.0f;
 }
 
 [Serializable]
@@ -149,9 +152,13 @@ public class s_scene_dictator : MonoBehaviour
 
     public void f_camera_dictate()
     {
-        if (v_camera_dictator_setup.v_camera_gameobject_dictate_element.v_camera_black_fade_dictate)
+        if (v_camera_dictator_setup.v_camera_gameobject_dictate_element.v_camera_black_fade_target_dictate)
         {
             v_camera_dictator_setup.v_camera_gameobject_script.v_camera_black_fade_setup.v_camera_black_fade_target = v_camera_dictator_setup.v_camera_gameobject_dictate_element.v_camera_black_fade_target;
+        }
+        if (v_camera_dictator_setup.v_camera_gameobject_dictate_element.v_camera_black_fade_alpha_dictate)
+        {
+            v_camera_dictator_setup.v_camera_gameobject_script.v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha = v_camera_dictator_setup.v_camera_gameobject_dictate_element.v_sprite_alpha;
         }
     }
 

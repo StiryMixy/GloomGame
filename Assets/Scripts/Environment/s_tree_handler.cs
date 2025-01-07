@@ -18,6 +18,8 @@ public class svl_tree_sprite_handler
     [SerializeField] public bool v_tree_entity_shadow_is_white = false;
     [SerializeField] public float v_tree_entity_shadow_scale;
     [SerializeField] public s_sprite_handler v_tree_entity_shadow_script;
+    [Space(10)]
+    [SerializeField] public bool v_tree_entity_occlusion_disabled = false;
     [Header("Reference Variables")]
     [SerializeField] public s_sprite_handler v_tree_visible_sprite_gameobject_script;
     [SerializeField] public s_sprite_handler v_tree_occluded_sprite_gameobject_script;
@@ -61,19 +63,30 @@ public class s_tree_handler : MonoBehaviour
 
             f_tree_entity_spriter();
         }
+
+        if (v_tree_sprite_handler_setup.v_tree_entity_occlusion_disabled)
+        {
+            if (v_tree_collision_list.Count > 0)
+            {
+                v_tree_collision_list.Clear();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider sv_other_object)
     {
         if (v_tree_collision_list.Count <= 0)
         {
-            if (sv_other_object.gameObject.GetComponent<s_player_handler>())
+            if (!v_tree_sprite_handler_setup.v_tree_entity_occlusion_disabled)
             {
-                v_tree_collision_list.Add(sv_other_object.gameObject);
-            }
-            else if (sv_other_object.gameObject.GetComponent<s_player_sight_collider_handler>())
-            {
-                v_tree_collision_list.Add(sv_other_object.gameObject);
+                if (sv_other_object.gameObject.GetComponent<s_player_handler>())
+                {
+                    v_tree_collision_list.Add(sv_other_object.gameObject);
+                }
+                else if (sv_other_object.gameObject.GetComponent<s_player_sight_collider_handler>())
+                {
+                    v_tree_collision_list.Add(sv_other_object.gameObject);
+                }
             }
         }
     }
