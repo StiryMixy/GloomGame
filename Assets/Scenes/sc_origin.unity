@@ -6081,6 +6081,7 @@ MonoBehaviour:
     v_player_collider_object_distance_accuracy_threshold: 0.001
     v_player_collider_object_distance_position_threshold: 0.1
     v_player_collider_object_distance_sprite_threshold: 0.1
+    v_player_collider_object_distance_speed_threshold: 0.2
     v_player_collider_object_follow_speed_multiplier: 3
     v_player_movement_key_list: 
     v_player_movement_key_index_list_direction_gate: 0
@@ -6088,7 +6089,6 @@ MonoBehaviour:
     v_player_position_update_gate: 0
     v_player_movement_key_index: 0
     v_player_collider_object_distance: 0
-    v_player_planned_position: {x: 0, y: 0, z: 0}
   v_player_sprite_setup:
     v_sprite_enabled: 1
     v_sprite_entity: 0

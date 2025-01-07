@@ -48420,12 +48420,20 @@ MonoBehaviour:
       v_time_is_stopped: 0
     v_time_handler_gameobject: {fileID: 0}
     v_time_handler_script: {fileID: 0}
+  v_key_manager_dictator_setup:
+    v_key_manager_gameobject_name: entity_key_manager
+    v_key_manager_gameobject_dictate_element:
+      v_Key_manager_player_movement_dictate: 1
+      v_player_movement_enabled: 1
+    v_key_manager_gameobject: {fileID: 0}
+    v_key_manager_script: {fileID: 0}
   v_camera_dictator_setup:
     v_camera_gameobject_name: entity_camera
     v_camera_gameobject_dictate_element:
       v_camera_black_fade_target_dictate: 1
       v_camera_black_fade_target: 0
-      v_camera_black_fade_dictate: 0
+      v_camera_black_fade_alpha_dictate: 0
+      v_sprite_alpha: 0
     v_camera_gameobject: {fileID: 0}
     v_camera_gameobject_script: {fileID: 0}
   v_player_dictator_setup:

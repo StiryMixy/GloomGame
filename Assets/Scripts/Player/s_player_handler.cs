@@ -13,6 +13,7 @@ public class svl_player_movement
     [SerializeField] public float v_player_collider_object_distance_accuracy_threshold;
     [SerializeField] public float v_player_collider_object_distance_position_threshold;
     [SerializeField] public float v_player_collider_object_distance_sprite_threshold;
+    [SerializeField] public float v_player_collider_object_distance_speed_threshold;
     [SerializeField] public float v_player_collider_object_follow_speed_multiplier;
     [Header("Reference Variables")]
     [SerializeField] public List<KeyCode> v_player_movement_key_list;
@@ -21,7 +22,6 @@ public class svl_player_movement
     [SerializeField] public bool v_player_position_update_gate = false;
     [SerializeField] public int v_player_movement_key_index = 0;
     [SerializeField] public float v_player_collider_object_distance;
-    [SerializeField] public Vector3 v_player_planned_position;
 }
 
 [Serializable]
@@ -225,13 +225,20 @@ public class s_player_handler : MonoBehaviour
         {
             if (v_player_movement_setup.v_player_collider_object_distance > v_player_movement_setup.v_player_collider_object_distance_sprite_threshold)
             {
-                if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_speed_setup.v_player_collider_movement_speed_is_walking)
+                if (v_player_movement_setup.v_player_collider_object_distance > v_player_movement_setup.v_player_collider_object_distance_speed_threshold)
                 {
-                    v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Walk;
+                    if (v_player_movement_setup.v_player_collider_object_script.v_player_collider_movement_setup.v_player_collider_movement_speed_setup.v_player_collider_movement_speed_is_walking)
+                    {
+                        v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Walk;
+                    }
+                    else
+                    {
+                        v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Run;
+                    }
                 }
                 else
                 {
-                    v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Run;
+                    v_player_sprite_setup.v_sprite_state = v_tags_sprite_state_list.Walk;
                 }
             }
 

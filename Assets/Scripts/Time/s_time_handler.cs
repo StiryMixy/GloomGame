@@ -50,10 +50,8 @@ public class s_time_handler : MonoBehaviour
 {
     [Header("Time Handler List Setup")]
     [SerializeField] public List<svl_time_handler_list_element> v_time_handler_list_setup = new List<svl_time_handler_list_element>();
-
     [Header("Time Handler Level Type Setup")]
     public List<v_tags_timer_level_list> v_tags_timer_level_list = new List<v_tags_timer_level_list>();
-
     [Header("Time Stop Handler Setup")]
     public bool v_time_is_stopped = false;
 

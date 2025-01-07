@@ -52,25 +52,18 @@ public class s_camera : MonoBehaviour
 {
     [Header("Camera Time Caller Setup")]
     [SerializeField] public svgl_time_caller v_sprite_time_caller_setup = new svgl_time_caller();
-
     [Header("Key Manager Game Object Setup")]
     [SerializeField] public svgl_key_manager v_camera_key_manager_gameobject_setup = new svgl_key_manager();
-
     [Header("UI Handler Caller Setup")]
     [SerializeField] public svl_ui_caller v_ui_handler_setup = new svl_ui_caller();
-
     [Header("Camera Game Object Setup")]
     [SerializeField] public svl_camera_actualcamera v_camera_actualcamera_gameobject_setup = new svl_camera_actualcamera();
-
     [Header("Camera Height Setup")]
     [SerializeField] public svl_camera_height v_camera_height_setup = new svl_camera_height();
-
     [Header("Camera Focus Setup")]
     [SerializeField] public svl_camera_focus v_camera_focus_setup = new svl_camera_focus();
-
     [Header("Camera Black Fade Setup")]
     [SerializeField] public svl_camera_black_fade v_camera_black_fade_setup = new svl_camera_black_fade();
-
     [Header("Camera Debug Setup")]
     [SerializeField] public sgvl_debug_full_controller v_camera_debug_render_setup = new sgvl_debug_full_controller();
 
@@ -220,7 +213,10 @@ public class s_camera : MonoBehaviour
 
     public void f_camera_elements_manipulator(bool sv_target_state)
     {
-        v_camera_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.v_player_movement_enabled = sv_target_state;
+        if (!sv_target_state)
+        {
+            v_camera_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.v_player_movement_enabled = false;
+        }
         v_sprite_time_caller_setup.v_time_handler_script.v_time_is_stopped = !sv_target_state;
         v_ui_handler_setup.v_ui_gameobject_script.v_player_hud_setup.v_player_hud_is_visible = sv_target_state;
     }

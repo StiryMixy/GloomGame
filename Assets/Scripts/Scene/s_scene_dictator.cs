@@ -24,6 +24,25 @@ public class svl_time_caller
 }
 
 [Serializable]
+public class svl_key_manager_gameobject_dictate_element
+{
+    [Header("Player Movement")]
+    [SerializeField] public bool v_Key_manager_player_movement_dictate;
+    [SerializeField] public bool v_player_movement_enabled;
+}
+
+[Serializable]
+public class svl_key_manager_dictator
+{
+    [Header("Configurable Variables")]
+    [SerializeField] public string v_key_manager_gameobject_name;
+    [SerializeField] public svl_key_manager_gameobject_dictate_element v_key_manager_gameobject_dictate_element = new svl_key_manager_gameobject_dictate_element();
+    [Header("Reference Variables")]
+    [SerializeField] public GameObject v_key_manager_gameobject;
+    [SerializeField] public s_key_manager v_key_manager_script;
+}
+
+[Serializable]
 public class svl_player_gameobject_dictate_element
 {
     [Header("Player Sprite Entity")]
@@ -104,13 +123,12 @@ public class s_scene_dictator : MonoBehaviour
 {
     [Header("Time Handler Dictator Setup")]
     [SerializeField] public svl_time_caller v_time_handler_dictator_setup = new svl_time_caller();
-
+    [Header("Key Manager Dictator Setup")]
+    [SerializeField] public svl_key_manager_dictator v_key_manager_dictator_setup = new svl_key_manager_dictator();
     [Header("Camera Dictator Setup")]
     [SerializeField] public svl_camera_dictator v_camera_dictator_setup = new svl_camera_dictator();
-
     [Header("Player Dictator Setup")]
     [SerializeField] public svl_player_dictator v_player_dictator_setup = new svl_player_dictator();
-
     [Header("UI Dictator Setup")]
     [SerializeField] public svl_ui_dictator v_ui_dictator_setup = new svl_ui_dictator();
 
@@ -118,6 +136,7 @@ public class s_scene_dictator : MonoBehaviour
     {
         f_scene_dictator_gameobject_finder();
         f_time_handler_dictate();
+        f_key_manager_dictate();
         f_camera_dictate();
         f_player_dictate();
         f_player_collider_dictate();
@@ -128,6 +147,9 @@ public class s_scene_dictator : MonoBehaviour
     {
         v_time_handler_dictator_setup.v_time_handler_gameobject = GameObject.Find(v_time_handler_dictator_setup.v_time_handler_gameobject_name);
         v_time_handler_dictator_setup.v_time_handler_script = v_time_handler_dictator_setup.v_time_handler_gameobject.GetComponent<s_time_handler>();
+
+        v_key_manager_dictator_setup.v_key_manager_gameobject = GameObject.Find(v_key_manager_dictator_setup.v_key_manager_gameobject_name);
+        v_key_manager_dictator_setup.v_key_manager_script = v_key_manager_dictator_setup.v_key_manager_gameobject.GetComponent<s_key_manager>();
 
         v_camera_dictator_setup.v_camera_gameobject = GameObject.Find(v_camera_dictator_setup.v_camera_gameobject_name);
         v_camera_dictator_setup.v_camera_gameobject_script = v_camera_dictator_setup.v_camera_gameobject.GetComponent<s_camera>();
@@ -147,6 +169,14 @@ public class s_scene_dictator : MonoBehaviour
         if (v_time_handler_dictator_setup.v_time_handler_gameobject_dictate_element.v_time_handler_gameobject_dictate)
         {
             v_time_handler_dictator_setup.v_time_handler_script.v_time_is_stopped = v_time_handler_dictator_setup.v_time_handler_gameobject_dictate_element.v_time_is_stopped;
+        }
+    }
+
+    public void f_key_manager_dictate()
+    {
+        if (v_key_manager_dictator_setup.v_key_manager_gameobject_dictate_element.v_Key_manager_player_movement_dictate)
+        {
+            v_key_manager_dictator_setup.v_key_manager_script.v_key_manager_player_movement_setup.v_player_movement_enabled = v_key_manager_dictator_setup.v_key_manager_gameobject_dictate_element.v_player_movement_enabled;
         }
     }
 
