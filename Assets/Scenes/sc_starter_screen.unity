@@ -396,6 +396,8 @@ MonoBehaviour:
       v_sprite_direction_dictate: 1
       v_sprite_state_orientation: 0
       v_sprite_state_profile: 0
+      v_sprite_alpha_dictate: 0
+      v_sprite_alpha: 0
     v_player_collider_gameobject_dictate_element:
       v_speed_dictate: 1
       v_player_collider_movement_speed_is_walking: 0
@@ -802,7 +804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936737306644471775, guid: a0bdcb85f2cbcfa41a267d28dbca5abe, type: 3}
       propertyPath: v_pathing_scene_changer_setup.v_pathing_scene_changer_target
-      value: sc_tutorial_courtyard_start
+      value: sc_tutorial_courtyard_start_cutscene
       objectReference: {fileID: 0}
     - target: {fileID: 7936737306644471775, guid: a0bdcb85f2cbcfa41a267d28dbca5abe, type: 3}
       propertyPath: v_pathing_scene_changer_setup.v_pathing_scene_changer_enabled

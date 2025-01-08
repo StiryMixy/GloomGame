@@ -52,6 +52,9 @@ public class svl_player_gameobject_dictate_element
     [SerializeField] public bool v_sprite_direction_dictate;
     [SerializeField] public v_tags_sprite_orientation_list v_sprite_state_orientation;
     [SerializeField] public v_tags_sprite_profile_list v_sprite_state_profile;
+    [Header("Player Sprite Alpha")]
+    [SerializeField] public bool v_sprite_alpha_dictate;
+    [SerializeField] public float v_sprite_alpha;
 }
 
 [Serializable]
@@ -132,14 +135,17 @@ public class s_scene_dictator : MonoBehaviour
     [Header("UI Dictator Setup")]
     [SerializeField] public svl_ui_dictator v_ui_dictator_setup = new svl_ui_dictator();
 
-    void Start()
+    void Awake()
     {
         f_scene_dictator_gameobject_finder();
+
         f_time_handler_dictate();
-        f_key_manager_dictate();
-        f_camera_dictate();
         f_player_dictate();
         f_player_collider_dictate();
+
+        f_camera_dictate();
+        f_key_manager_dictate();
+
         f_ui_dictate();
     }
 
@@ -202,6 +208,10 @@ public class s_scene_dictator : MonoBehaviour
         {
             v_player_dictator_setup.v_player_gameobject_script.v_player_sprite_setup.v_sprite_state_orientation = v_player_dictator_setup.v_player_gameobject_dictate_element.v_sprite_state_orientation;
             v_player_dictator_setup.v_player_gameobject_script.v_player_sprite_setup.v_sprite_state_profile = v_player_dictator_setup.v_player_gameobject_dictate_element.v_sprite_state_profile;
+        }
+        if (v_player_dictator_setup.v_player_gameobject_dictate_element.v_sprite_alpha_dictate)
+        {
+            v_player_dictator_setup.v_player_gameobject_script.v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_alpha_setup.v_sprite_alpha = v_player_dictator_setup.v_player_gameobject_dictate_element.v_sprite_alpha;
         }
     }
 

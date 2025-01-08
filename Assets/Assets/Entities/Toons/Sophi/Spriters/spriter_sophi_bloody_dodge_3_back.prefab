@@ -68,7 +68,7 @@ MonoBehaviour:
     v_frame_sprite_profile: 0
   v_sprite_alpha_setup:
     v_sprite_alpha_global: 1
-    v_sprite_alpha_update_on_timer: 1
+    v_sprite_alpha_update_on_timer: 0
     v_sprite_alpha_target: 1
     v_sprite_alpha_target_max: 1
     v_sprite_alpha_target_min: 0

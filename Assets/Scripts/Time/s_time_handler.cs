@@ -141,6 +141,11 @@ public class s_time_handler : MonoBehaviour
                 tv_reference_index.v_timer_gate_counter = 0;
             }
         }
+
+        if (v_time_is_stopped)
+        {
+            tv_reference_index.v_timer_rate = 0.0f;
+        }
     }
 
     public void f_time_level_timer(int sv_time_level_index)

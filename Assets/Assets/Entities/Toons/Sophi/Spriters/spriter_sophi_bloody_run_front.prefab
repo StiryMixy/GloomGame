@@ -72,7 +72,7 @@ MonoBehaviour:
     v_frame_sprite_profile: 0
   v_sprite_alpha_setup:
     v_sprite_alpha_global: 1
-    v_sprite_alpha_update_on_timer: 1
+    v_sprite_alpha_update_on_timer: 0
     v_sprite_alpha_target: 1
     v_sprite_alpha_target_max: 1
     v_sprite_alpha_target_min: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
     v_sprite_float_direction_is_down_bool: 0
     v_sprite_float_up_bool_direction_change_check: 0
     v_sprite_float_up_bool_frame_move_check: 0
+    v_sprite_default_position: {x: 0, y: 0, z: 0}
   v_sprite_index_setup:
   - v_timer_stay: 6
     v_timer_stay_randomized: 1
@@ -354,7 +355,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1729399983
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

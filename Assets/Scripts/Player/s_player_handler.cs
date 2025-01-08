@@ -401,5 +401,13 @@ public class s_player_handler : MonoBehaviour
     {
         transform.position = Vector3.zero;
         v_player_sprite_setup.v_player_sprite_caller_object_script.f_sprite_manual_counter_reset();
+
+        v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_alpha_setup.v_sprite_alpha_global = true;
+        v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_alpha_setup.v_sprite_alpha_update_on_timer = false;
+        v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_alpha_setup.v_sprite_alpha_target = 0.0f;
+        v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_definition_setup.v_sprite_entity_definition_subject_script.v_sprite_alpha_setup.v_sprite_alpha = 0.0f;
+
+        v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_script.v_sprite_alpha_setup.v_sprite_alpha_target = 0.0f;
+        v_player_sprite_setup.v_player_sprite_caller_object_script.v_sprite_entity_state_shadow_setup.v_sprite_entity_shadow_script.v_sprite_alpha_setup.v_sprite_alpha = 0.0f;
     }
 }

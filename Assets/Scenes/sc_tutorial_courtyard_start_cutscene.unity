@@ -7572,6 +7572,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5643300263064549426, guid: 945ef41d09c015b4fa78397dd6c30175, type: 3}
   m_PrefabInstance: {fileID: 905513407}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &906798468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 906798469}
+  m_Layer: 0
+  m_Name: scene_action
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &906798469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906798468}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8609123048958922401}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &926348119
 GameObject:
   m_ObjectHideFlags: 0
@@ -17353,9 +17385,11 @@ MonoBehaviour:
       v_sprite_direction_dictate: 1
       v_sprite_state_orientation: 0
       v_sprite_state_profile: 0
+      v_sprite_alpha_dictate: 1
+      v_sprite_alpha: 0
     v_player_collider_gameobject_dictate_element:
-      v_speed_dictate: 1
-      v_player_collider_movement_speed_is_walking: 1
+      v_speed_dictate: 0
+      v_player_collider_movement_speed_is_walking: 0
     v_player_gameobject: {fileID: 0}
     v_player_gameobject_script: {fileID: 0}
     v_player_collider_gameobject: {fileID: 0}
@@ -18533,7 +18567,7 @@ MonoBehaviour:
     v_sprite_alpha_target_max: 1
     v_sprite_alpha_target_min: 0
     v_sprite_alpha_increment: 0.05
-    v_sprite_alpha: 0
+    v_sprite_alpha: 1
     v_sprite_alpha_bool_frame_move_check: 0
   v_sprite_float_up_setup:
     v_sprite_float_up_enabled: 0
@@ -18561,10 +18595,10 @@ MonoBehaviour:
     v_sprite_float_up_bool_frame_move_check: 0
     v_sprite_default_position: {x: 0, y: 0, z: 0}
   v_sprite_index_setup:
-  - v_timer_stay: 1
+  - v_timer_stay: 20
     v_timer_stay_randomized: 0
     v_timer_stay_randomized_max: 0
-    v_timer_stay_forever: 1
+    v_timer_stay_forever: 0
     v_sprite_alpha_setup:
       v_sprite_alpha_local: 0
       v_sprite_alpha_skip: 1
@@ -18590,10 +18624,10 @@ MonoBehaviour:
       v_sprite_float_up_target_smoothness_max: 0
       v_sprite_float_direction_is_down_bool: 0
       v_sprite_float_up_bool_direction_change_check: 0
-  - v_timer_stay: 1
+  - v_timer_stay: 30
     v_timer_stay_randomized: 0
     v_timer_stay_randomized_max: 0
-    v_timer_stay_forever: 1
+    v_timer_stay_forever: 0
     v_sprite_alpha_setup:
       v_sprite_alpha_local: 0
       v_sprite_alpha_skip: 1
@@ -18619,10 +18653,10 @@ MonoBehaviour:
       v_sprite_float_up_target_smoothness_max: 0
       v_sprite_float_direction_is_down_bool: 0
       v_sprite_float_up_bool_direction_change_check: 0
-  - v_timer_stay: 1
+  - v_timer_stay: 30
     v_timer_stay_randomized: 0
     v_timer_stay_randomized_max: 0
-    v_timer_stay_forever: 1
+    v_timer_stay_forever: 0
     v_sprite_alpha_setup:
       v_sprite_alpha_local: 0
       v_sprite_alpha_skip: 1
@@ -21401,7 +21435,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6803421455075086858}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 906798469}
   m_LocalEulerAnglesHint: {x: 295, y: 0, z: 0}
 --- !u!1001 &8693228772774160709
 PrefabInstance:
@@ -21635,6 +21669,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 906798469}
   - {fileID: 1134323676}
   - {fileID: 2133882677}
-  - {fileID: 8609123048958922401}
