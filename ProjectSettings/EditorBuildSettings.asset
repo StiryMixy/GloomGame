@@ -6,21 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/sc_origin.unity
+    path: Assets/Scenes/Gameplay/sc_origin.unity
     guid: 940f21cc10580ae4eaa92745c2d058ff
   - enabled: 1
-    path: Assets/Scenes/sc_starter_screen.unity
+    path: Assets/Scenes/Gameplay/sc_starter_screen.unity
     guid: 3be77e84ead6ba24e8929305fdd71d8b
   - enabled: 1
-    path: Assets/Scenes/sc_tutorial_courtyard_start_cutscene.unity
+    path: Assets/Scenes/Gameplay/sc_title_act1chap1.unity
+    guid: 67f3dd4918ca00e43b2452d2fcf078e6
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/sc_tutorial_courtyard_start_cutscene.unity
     guid: d67616dda3d8bac4f829ee93611bacc3
   - enabled: 1
-    path: Assets/Scenes/sc_tutorial_courtyard_start.unity
+    path: Assets/Scenes/Gameplay/sc_tutorial_courtyard_start.unity
     guid: 147ac781cded88d4887b359ed0193a04
   - enabled: 1
-    path: Assets/Scenes/sc_tutorial_hallway_from_courtyard.unity
+    path: Assets/Scenes/Gameplay/sc_tutorial_hallway_from_courtyard.unity
     guid: 4bb02c11756fcd94caf7f68264a38450
   - enabled: 1
-    path: Assets/Scenes/sc_tutorial_central_room.unity
+    path: Assets/Scenes/Gameplay/sc_tutorial_central_room.unity
     guid: 61f45501d2be16b4aa56ba4d8603adef
   m_configObjects: {}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Presets;
 using UnityEngine;
 using static s_tag_library;
 
@@ -90,6 +91,9 @@ public class svl_camera_gameobject_dictate_element
     [Header("Camera Black Fade Alpha")]
     [SerializeField] public bool v_camera_black_fade_alpha_dictate;
     [Range(0.0f, 1.0f)][SerializeField] public float v_sprite_alpha = 0.0f;
+    [Header("Camera Background Color")]
+    [SerializeField] public bool v_camera_background_color_dictate;
+    [SerializeField] public Color v_camera_background_color = Color.black;
 }
 
 [Serializable]
@@ -106,8 +110,25 @@ public class svl_camera_dictator
 [Serializable]
 public class svl_ui_gameobject_dictate_element
 {
-    [Header("UI Player Hud Visibility")]
+    [Header("UI Master Hud Visibility")]
     [SerializeField] public bool v_ui_visibility_dictate;
+    [Space(10)]
+    [SerializeField] public bool v_titlesequence_hud_is_visible;
+    [SerializeField] public bool v_titlesequence_hud_visualiser_is_enabled;
+    [SerializeField] public Sprite v_titlesequence_hud_visualizer_sprite;
+    [SerializeField] public Preset v_titlesequence_hud_visualizer_image_rect_transform;
+    [SerializeField] public float v_titlesequence_hud_visualizer_image_rect_transform_distance_threshold;
+    [SerializeField] public float v_titlesequence_hud_visualizer_image_rect_transform_lerpspeed;
+    [SerializeField] public Preset v_titlesequence_hud_visualizer_text_rect_transform;
+    [SerializeField] public Preset v_titlesequence_hud_visualizer_text_configuration;
+    [SerializeField] public float v_titlesequence_hud_visualizer_text_distance_alpha_threshold;
+    [SerializeField] public bool v_titlesequence_hud_visualizer_scene_changer;
+    [SerializeField] public string v_titlesequence_hud_visualizer_scene_changer_target_scene;
+    [SerializeField] public float v_titlesequence_hud_visualizer_scene_changer_distance_threshold;
+    [SerializeField] public int v_titlesequence_hud_visualizer_scene_changer_elapsed_time_threshold;
+    [SerializeField] public bool v_titlesequence_hud_visualizer_scene_changer_fade_changer_enabled;
+    [SerializeField] public bool v_titlesequence_hud_visualizer_scene_changer_fade_is_white;
+    [Space(10)]
     [SerializeField] public bool v_player_hud_is_visible;
 }
 
@@ -196,6 +217,10 @@ public class s_scene_dictator : MonoBehaviour
         {
             v_camera_dictator_setup.v_camera_gameobject_script.v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_alpha_setup.v_sprite_alpha = v_camera_dictator_setup.v_camera_gameobject_dictate_element.v_sprite_alpha;
         }
+        if (v_camera_dictator_setup.v_camera_gameobject_dictate_element.v_camera_background_color_dictate)
+        {
+            v_camera_dictator_setup.v_camera_gameobject_script.v_camera_actualcamera_gameobject_setup.v_actualcamera_gameobject.GetComponent<Camera>().backgroundColor = v_camera_dictator_setup.v_camera_gameobject_dictate_element.v_camera_background_color;
+        }
     }
 
     public void f_player_dictate()
@@ -227,7 +252,31 @@ public class s_scene_dictator : MonoBehaviour
     {
         if (v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_ui_visibility_dictate)
         {
-            v_ui_dictator_setup.v_ui_gameobject_script.v_player_hud_setup.v_player_hud_is_visible = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_player_hud_is_visible;
+            v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_is_visible = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_is_visible;
+            v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_is_enabled = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualiser_is_enabled;
+            if (v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualiser_is_enabled)
+            {
+                v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_sprite = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_sprite;
+
+                v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_image_rect_transform.ApplyTo(v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_self_rect_transform_script);
+
+                v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_self_rect_transform_script_distance_threshold = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_image_rect_transform_distance_threshold;
+                v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_self_rect_transform_script_lerpspeed = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_image_rect_transform_lerpspeed;
+
+                v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_text_rect_transform.ApplyTo(v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_text_rect_transform_script);
+                v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_text_configuration.ApplyTo(v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_text_script);
+
+                v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_text_distance_alpha_threshold = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_text_distance_alpha_threshold;
+
+                v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_scene_changer = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_scene_changer;
+                v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_scene_changer_target_scene = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_scene_changer_target_scene;
+                v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_scene_changer_distance_threshold = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_scene_changer_distance_threshold;
+                v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_scene_changer_elapsed_time_threshold = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_scene_changer_elapsed_time_threshold;
+                v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_scene_changer_fade_changer_enabled = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_scene_changer_fade_changer_enabled;
+                v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_scene_changer_fade_is_white = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_titlesequence_hud_visualizer_scene_changer_fade_is_white;
+            }
+            
+            v_ui_dictator_setup.v_ui_gameobject_script.v_master_hud_setup.v_player_hud_is_visible = v_ui_dictator_setup.v_ui_gameobject_dictate_element.v_player_hud_is_visible;
         }
     }
 }

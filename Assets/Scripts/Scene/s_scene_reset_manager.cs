@@ -5,6 +5,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [Serializable]
+public class svgl_reset_manager_caller
+{
+    [Header("Configurable Variables")]
+    [SerializeField] public string v_reset_manager_gameobject_name;
+    [Header("Reference Variables")]
+    [SerializeField] public GameObject v_reset_manager_gameobject;
+    [SerializeField] public s_scene_reset_manager v_reset_manager_script;
+}
+
+[Serializable]
 public class svl_scene_reset_targets
 {
     [Header("Configurable Variables")]
@@ -12,6 +22,8 @@ public class svl_scene_reset_targets
     [SerializeField] public s_camera v_scene_camera_target;
     [SerializeField] public s_player_collider_controller v_scene_player_collider_controller_target;
     [SerializeField] public s_player_handler v_scene_player_handler_target;
+    [SerializeField] public s_ui_handler v_scene_ui_handler_target;
+    [SerializeField] public bool v_scene_camera_target_fade_is_white;
     [Header("Reference Variables")]
     [SerializeField] public bool v_reset_gate = false;
     [SerializeField] public string v_reset_target_scene;
@@ -55,7 +67,14 @@ public class s_scene_reset_manager : MonoBehaviour
             if (v_scene_reset_manager_targets_setup.v_scene_camera_target.f_scene_black_fade_maxed_alpha())
             {
                 v_scene_reset_manager_targets_setup.v_reset_gate = false;
-                f_scene_reset_action_list();
+
+                if (v_scene_reset_manager_targets_setup.v_scene_ui_handler_target.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_self_image_alpha_handler.v_image_alpha_handler_setup.v_image_alpha <= 0.0f)
+                {
+                    if (v_scene_reset_manager_targets_setup.v_scene_ui_handler_target.v_master_hud_setup.v_titlesequence_hud_gameobject_script.v_titlesequence_visualizer_setup.v_titlesequence_visualizer_text_alpha_handler.v_text_alpha_handler_setup.v_text_alpha <= 0.0f)
+                    {
+                        f_scene_reset_action_list();
+                    }
+                }
             }
         }
     }
@@ -97,6 +116,14 @@ public class s_scene_reset_manager : MonoBehaviour
         v_scene_reset_manager_targets_setup.v_reset_gate = true;
         v_scene_reset_manager_targets_setup.v_reset_target_scene = sv_target_scene_name;
         v_scene_reset_manager_targets_setup.v_scene_camera_target.v_camera_black_fade_setup.v_camera_black_fade_input_block_upward = true;
+        if (v_scene_reset_manager_targets_setup.v_scene_camera_target_fade_is_white)
+        {
+            v_scene_reset_manager_targets_setup.v_scene_camera_target.v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_frame_setup.v_frame_counter = 1;
+        }
+        else
+        {
+            v_scene_reset_manager_targets_setup.v_scene_camera_target.v_camera_black_fade_setup.v_camera_black_fade_gameobject_script.v_sprite_frame_setup.v_frame_counter = 0;
+        }
     }
 
     public void f_scene_reset_action_list()
@@ -105,6 +132,7 @@ public class s_scene_reset_manager : MonoBehaviour
         v_scene_reset_manager_targets_setup.v_scene_camera_joystick_target.f_scene_reset_action();
         v_scene_reset_manager_targets_setup.v_scene_player_collider_controller_target.f_scene_reset_action();
         v_scene_reset_manager_targets_setup.v_scene_player_handler_target.f_scene_reset_action();
+        v_scene_reset_manager_targets_setup.v_scene_ui_handler_target.f_scene_reset_action();
         transform.position = Vector3.zero;
         SceneManager.LoadScene(sceneName: v_scene_reset_manager_targets_setup.v_reset_target_scene);
         v_scene_reset_manager_targets_setup.v_reset_target_scene = "";

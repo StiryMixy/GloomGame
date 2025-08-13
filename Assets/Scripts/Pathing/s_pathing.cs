@@ -29,6 +29,9 @@ public class svl_pathing_scene_changer
     [Header("Configurable Variables")]
     [SerializeField] public bool v_pathing_scene_changer_enabled;
     [SerializeField] public string v_pathing_scene_changer_target;
+    [Space(10)]
+    [SerializeField] public bool v_pathing_fade_changer_enabled;
+    [SerializeField] public bool v_pathing_fade_is_white;
 }
 
 [Serializable]
@@ -163,6 +166,10 @@ public class s_pathing : MonoBehaviour
             {
                 if (sv_other_object.gameObject.TryGetComponent<s_scene_reset_manager>(out var ov_scene_reset_manager))
                 {
+                    if (v_pathing_scene_changer_setup.v_pathing_fade_changer_enabled)
+                    {
+                        ov_scene_reset_manager.v_scene_reset_manager_targets_setup.v_scene_camera_target_fade_is_white = v_pathing_scene_changer_setup.v_pathing_fade_is_white;
+                    }
                     ov_scene_reset_manager.f_scene_reset_action(v_pathing_scene_changer_setup.v_pathing_scene_changer_target);
                 }
             }

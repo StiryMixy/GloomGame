@@ -70,7 +70,7 @@ MonoBehaviour:
     v_sprite_alpha_global: 1
     v_sprite_alpha_update_on_timer: 0
     v_sprite_alpha_target: 0
-    v_sprite_alpha_target_max: 0.05
+    v_sprite_alpha_target_max: 0.075
     v_sprite_alpha_target_min: 0
     v_sprite_alpha_increment: 0.01
     v_sprite_alpha: 0

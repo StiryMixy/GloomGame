@@ -217,7 +217,7 @@ public class s_camera : MonoBehaviour
         if (!sv_target_state)
         {
             v_camera_key_manager_gameobject_setup.v_key_manager_gameobject_script.v_key_manager_player_movement_setup.v_player_movement_enabled = false;
-            v_ui_handler_setup.v_ui_gameobject_script.v_player_hud_setup.v_player_hud_is_visible = false;
+            v_ui_handler_setup.v_ui_gameobject_script.v_master_hud_setup.v_player_hud_is_visible = false;
         }
     }
 }

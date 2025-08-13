@@ -12,8 +12,14 @@ public class svl_player_movement
     [SerializeField] public s_player_collider_controller v_player_collider_object_script;
     [SerializeField] public float v_player_collider_object_distance_accuracy_threshold;
     [SerializeField] public float v_player_collider_object_distance_position_threshold;
-    [SerializeField] public float v_player_collider_object_distance_sprite_threshold;
-    [SerializeField] public float v_player_collider_object_distance_speed_threshold;
+    [SerializeField] public float v_player_collider_object_distance_sprite_threshold_max;
+    [SerializeField] public float v_player_collider_object_distance_sprite_threshold_min;
+    [SerializeField] public float v_player_collider_object_distance_sprite_threshold_counter_threshold;
+    [SerializeField] public float v_player_collider_object_distance_sprite_threshold_increment;
+    [SerializeField] public float v_player_collider_object_distance_speed_threshold_max;
+    [SerializeField] public float v_player_collider_object_distance_speed_threshold_min;
+    [SerializeField] public float v_player_collider_object_distance_speed_threshold_counter_threshold;
+    [SerializeField] public float v_player_collider_object_distance_speed_threshold_increment;
     [SerializeField] public float v_player_collider_object_follow_speed_multiplier;
     [Header("Reference Variables")]
     [SerializeField] public List<KeyCode> v_player_movement_key_list;
@@ -22,6 +28,10 @@ public class svl_player_movement
     [SerializeField] public bool v_player_position_update_gate = false;
     [SerializeField] public int v_player_movement_key_index = 0;
     [SerializeField] public float v_player_collider_object_distance;
+    [SerializeField] public float v_player_collider_object_distance_sprite_threshold = 0;
+    [SerializeField] public float v_player_collider_object_distance_speed_threshold = 0;
+    [SerializeField] public float v_player_collider_object_distance_sprite_threshold_counter = 0;
+    [SerializeField] public float v_player_collider_object_distance_speed_threshold_counter = 0;
 }
 
 [Serializable]
@@ -219,6 +229,40 @@ public class s_player_handler : MonoBehaviour
         if (v_player_movement_setup.v_player_position_update_gate)
         {
             v_player_movement_setup.v_player_position_update_gate = f_player_move_towards(v_player_movement_setup.v_player_collider_object.transform.position, v_player_time_handler_setup.v_time_handler_script.f_time_level_rate_get(v_player_time_handler_setup.v_time_handler_level));
+        }
+
+        if (v_player_movement_setup.v_player_movement_key_list.Count > 0)
+        {
+            if (v_player_movement_setup.v_player_collider_object_distance_sprite_threshold_counter < v_player_movement_setup.v_player_collider_object_distance_sprite_threshold_counter_threshold)
+            {
+                if (v_player_time_handler_setup.v_time_handler_script.f_time_level_gate_get(v_tags_timer_level_list.Metaphysical))
+                {
+                    v_player_movement_setup.v_player_collider_object_distance_sprite_threshold_counter = v_player_movement_setup.v_player_collider_object_distance_sprite_threshold_counter + v_player_movement_setup.v_player_collider_object_distance_sprite_threshold_increment;
+                }
+            }
+            else
+            {
+                v_player_movement_setup.v_player_collider_object_distance_sprite_threshold = v_player_movement_setup.v_player_collider_object_distance_sprite_threshold_min;
+            }
+
+            if (v_player_movement_setup.v_player_collider_object_distance_speed_threshold_counter < v_player_movement_setup.v_player_collider_object_distance_speed_threshold_counter_threshold)
+            {
+                if (v_player_time_handler_setup.v_time_handler_script.f_time_level_gate_get(v_tags_timer_level_list.Metaphysical))
+                {
+                    v_player_movement_setup.v_player_collider_object_distance_speed_threshold_counter = v_player_movement_setup.v_player_collider_object_distance_speed_threshold_counter + v_player_movement_setup.v_player_collider_object_distance_speed_threshold_increment;
+                }
+            }
+            else
+            {
+                v_player_movement_setup.v_player_collider_object_distance_speed_threshold = v_player_movement_setup.v_player_collider_object_distance_speed_threshold_min;
+            }
+        }
+        else
+        {
+            v_player_movement_setup.v_player_collider_object_distance_sprite_threshold = v_player_movement_setup.v_player_collider_object_distance_sprite_threshold_max;
+            v_player_movement_setup.v_player_collider_object_distance_speed_threshold = v_player_movement_setup.v_player_collider_object_distance_speed_threshold_max;
+            v_player_movement_setup.v_player_collider_object_distance_sprite_threshold_counter = 0;
+            v_player_movement_setup.v_player_collider_object_distance_speed_threshold_counter = 0;
         }
 
         if (v_player_sprite_setup.v_sprite_enabled)

@@ -105,7 +105,7 @@ MonoBehaviour:
     v_sprite_entity_definition_fallback_script: {fileID: 0}
   v_sprite_entity_state_shadow_setup:
     v_sprite_entity_shadow_enabled: 1
-    v_sprite_entity_shadow_is_white: 1
+    v_sprite_entity_shadow_is_white: 0
     v_sprite_entity_shadow_scale: 0.075
     v_sprite_entity_shadow_script: {fileID: 1813208820338603822}
 --- !u!1 &2659826906804955688

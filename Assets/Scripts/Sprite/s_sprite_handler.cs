@@ -149,7 +149,7 @@ public class s_sprite_handler : MonoBehaviour
     [Header("Sprite Handler Alpha Setup")]
     [SerializeField] public svl_sprite_alpha_handler v_sprite_alpha_setup = new svl_sprite_alpha_handler();
 
-    [Header("Sprite Handler Alpha Setup")]
+    [Header("Sprite Handler Float Setup")]
     [SerializeField] public svl_sprite_float_up_handler v_sprite_float_up_setup = new svl_sprite_float_up_handler();
 
     [Header("Sprite Handler Index Setup")]
